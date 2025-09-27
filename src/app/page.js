@@ -69,11 +69,10 @@ export default function OahuEbikesLanding() {
         <div className="mx-auto max-w-6xl px-4 py-16 md:py-24 grid md:grid-cols-2 gap-10 items-center">
           <div>
             <h1 className="text-4xl md:text-5xl font-semibold leading-tight text-slate-900">
-              Easy, beautiful <span className="text-emerald-600">e-bike rentals</span> on Oʻahu
+              E-bike rentals on Oʻahu made easy
             </h1>
             <p className="mt-4 text-slate-600 text-lg">
-              Reserve online. Scan a QR. Ride the island. We deliver to your
-              hotel or meet at our free pickup spot near McCully & Kapiʻolani.
+              Reserve online, unlock with your phone, and ride at your own pace. Delivery to your hotel or free pickup near McCully & Kapiʻolani.
             </p>
             <div className="mt-6 flex flex-wrap items-center gap-3">
               <Button
@@ -102,11 +101,10 @@ export default function OahuEbikesLanding() {
                 <Bike className="h-4 w-4 text-emerald-600" /> Foldable e-bikes
               </div>
               <div className="flex items-center gap-2">
-                <Lock className="h-4 w-4 text-emerald-600" /> U-lock + AirTag
+                <Lock className="h-4 w-4 text-emerald-600" /> U-lock included
               </div>
               <div className="flex items-center gap-2">
-                <Smartphone className="h-4 w-4 text-emerald-600" /> QR unlock
-                codes
+                <Smartphone className="h-4 w-4 text-emerald-600" /> QR unlock codes
               </div>
             </div>
           </div>
@@ -161,7 +159,7 @@ export default function OahuEbikesLanding() {
             </CardHeader>
             <CardContent className="space-y-4">
               <p className="text-4xl font-semibold">
-                $90
+                $60
                 <span className="text-base font-normal text-slate-500">
                   {" "}
                   / day
@@ -169,8 +167,9 @@ export default function OahuEbikesLanding() {
               </p>
               <ul className="space-y-2 text-slate-600 text-sm">
                 <li>Unlimited miles</li>
-                <li>Helmet, U-lock, AirTag security</li>
+                <li>Helmet, U-lock included</li>
                 <li>Digital guide routes</li>
+                <li>Flexible scheduling available</li>
               </ul>
               <Button
                 asChild
@@ -189,7 +188,7 @@ export default function OahuEbikesLanding() {
             </CardHeader>
             <CardContent className="space-y-4">
               <p className="text-4xl font-semibold">
-                $80
+                $50
                 <span className="text-base font-normal text-slate-500">
                   {" "}
                   / day
@@ -199,6 +198,7 @@ export default function OahuEbikesLanding() {
                 <li>2+ days, save more</li>
                 <li>Charger included</li>
                 <li>Night storage tips</li>
+                <li>Flexible scheduling available</li>
               </ul>
               <Button
                 asChild
@@ -371,7 +371,7 @@ export default function OahuEbikesLanding() {
               className="w-full h-72 md:h-full"
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3717.642732222692!2d-157.839!3d21.289!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjHCsDE3JzIwLjQiTiAxNTfCsDUwJzIxLjQiVw!5e0!3m2!1sen!2sus!4v1689123456789"
+              src="https://www.google.com/maps?q=831+Pumehana+St,+Honolulu,+HI+96826&output=embed"
             />
           </div>
           <Card className="rounded-3xl border-emerald-100">
