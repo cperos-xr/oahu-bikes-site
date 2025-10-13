@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   Bike,
   Calendar,
@@ -72,6 +72,50 @@ const THEMES = {
 
 const T = THEMES[ACTIVE_THEME];
 
+// Large Rotating Logo Component for Hero Section
+function HeroRotatingLogo() {
+  const logos = [
+    '/jazzy.png',
+    '/punky.png', 
+    '/rocky.png',
+    '/simpy.png',
+    '/splatty.png'
+  ];
+  
+  const [currentLogo, setCurrentLogo] = useState(0);
+  const [isVisible, setIsVisible] = useState(true);
+  
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIsVisible(false);
+      setTimeout(() => {
+        setCurrentLogo((prev) => (prev + 1) % logos.length);
+        setIsVisible(true);
+      }, 200); // Quick MTV-style transition
+    }, 1500); // Change every 1.5 seconds
+    
+    return () => clearInterval(interval);
+  }, [logos.length]);
+  
+  return (
+    <div className="relative w-32 h-32 md:w-40 md:h-40">
+      <img 
+        src={logos[currentLogo]}
+        alt="Oahu.BIKE Logo"
+        className={`w-full h-full object-contain transition-all duration-200 transform ${
+          isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+        }`}
+        onError={(e) => {
+          // Fallback to bike icon if image fails to load
+          e.target.style.display = 'none';
+          e.target.nextSibling.style.display = 'block';
+        }}
+      />
+      <Bike className={`w-32 h-32 md:w-40 md:h-40 ${T.brandIcon} hidden absolute inset-0`} />
+    </div>
+  );
+}
+
 export default function OahuBikeLanding() {
   return (
     <main className={`min-h-screen bg-gradient-to-b ${T.bgGrad} text-slate-800`}>
@@ -86,7 +130,7 @@ export default function OahuBikeLanding() {
       <nav className="sticky top-0 z-50 backdrop-blur supports-[backdrop-filter]:bg-white/70 bg-white/60 border-b border-slate-100">
         <div className="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <Waves className={`h-6 w-6 ${T.brandIcon}`} />
+            <Bike className={`h-6 w-6 ${T.brandIcon}`} />
             <span className="font-semibold tracking-wide text-slate-900">Oahu.BIKE</span>
           </div>
           <div className="hidden md:flex items-center gap-6 text-sm">
@@ -107,9 +151,13 @@ export default function OahuBikeLanding() {
 
       {/* Hero */}
       <section className="relative overflow-hidden">
-        {/* Large bicycle background icon */}
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-          <Bike className="w-96 h-96 md:w-[500px] md:h-[500px] text-slate-100/40 rotate-12" />
+        {/* Subtle background pattern */}
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-10">
+          <div className="grid grid-cols-4 gap-8 rotate-12">
+            {Array.from({ length: 12 }).map((_, i) => (
+              <Bike key={i} className="w-12 h-12 text-slate-300" />
+            ))}
+          </div>
         </div>
 
         <div className="mx-auto max-w-6xl px-4 py-16 md:py-24 grid md:grid-cols-2 gap-10 items-center relative z-10">
@@ -136,6 +184,11 @@ export default function OahuBikeLanding() {
           </div>
 
           <div className="relative">
+            {/* Rotating Logo - prominent display */}
+            <div className="flex justify-center mb-6">
+              <HeroRotatingLogo />
+            </div>
+            
             {/* Main scenic image */}
             <div
               aria-hidden="true"
