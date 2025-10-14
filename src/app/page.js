@@ -24,14 +24,11 @@ function GalleryComponent() {
   const [featuredImage, setFeaturedImage] = React.useState(0);
   
   const images = [
-    "/jazzy.png",
-    "/punky.png", 
-    "/rocky.png",
-    "/simpy.png",
-    "/splatty.png",
-    "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=400&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1465310477141-6fb93167a273?q=80&w=400&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=400&auto=format&fit=crop",
+    "/gallery/004.png",
+    "/gallery/001.png",
+    "/gallery/002.png",
+    "/gallery/005.png",
+    "/gallery/003.png",
   ];
 
   const handleImageClick = (index) => {
@@ -192,20 +189,18 @@ export default function OahuBikeLanding() {
           </div>
 
           <div className="relative">
-            {/* Main scenic image */}
-            <div
-              aria-hidden="true"
-              role="presentation"
-              className="aspect-[4/3] rounded-3xl shadow-xl bg-cover bg-center"
-              style={{
-                backgroundImage:
-                  "url('https://images.unsplash.com/photo-1465310477141-6fb93167a273?q=80&w=1400&auto=format&fit=crop')",
-              }}
-            />
-            {/* Front info chip */}
-            <div className={`absolute -bottom-4 -left-4 ${T.chip} backdrop-blur rounded-2xl shadow p-4 flex items-center gap-3 z-10`}>
-              <Star className="h-5 w-5 text-amber-500" />
-              <span className="text-sm">Hotel guests: grab & go at the lobby bike rack</span>
+            {/* Main scenic video */}
+            <div className="aspect-[4/3] rounded-3xl overflow-hidden shadow-xl">
+              <video
+                className="w-full h-full object-cover"
+                src="/gallery/overhead_clipped.mp4"
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                aria-hidden="true"
+              />
             </div>
           </div>
         </div>
@@ -220,7 +215,6 @@ export default function OahuBikeLanding() {
           </div>
         <div className="grid md:grid-cols-3 gap-6">
           <Card className={`rounded-3xl relative overflow-hidden ${T.border}`}>
-            <div className="absolute inset-0 bg-gradient-to-br from-white/40 to-transparent" />
             <CardHeader><CardTitle>Half‑Day Rental</CardTitle></CardHeader>
             <CardContent className="space-y-4">
               <p className="text-4xl font-semibold">$35<span className="text-base font-normal text-slate-500"> / half day</span></p>
