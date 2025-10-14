@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import {
   Bike,
   Calendar,
@@ -63,10 +64,10 @@ export default function SurfjackPage() {
         <div className="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between">
           <div className="flex items-center gap-4">
             <Button asChild variant="ghost" size="sm">
-              <a href="/" className="flex items-center gap-2">
+              <Link href="/" className="flex items-center gap-2">
                 <ArrowLeft className="h-4 w-4" />
                 <span className="hidden sm:inline">Back to Oahu.BIKE</span>
-              </a>
+              </Link>
             </Button>
             <div className="h-6 border-r border-slate-300" />
             <div className="flex items-center gap-3">
@@ -111,7 +112,7 @@ export default function SurfjackPage() {
               </span>
             </h1>
             <p className="text-xl text-amber-800 max-w-3xl mx-auto leading-relaxed">
-              Cruise the island in style from Waikīkī's most vibrant hotel. Where local art meets adventure, 
+              Cruise the island in style from Waikīkī&rsquo;s most vibrant hotel. Where local art meets adventure, 
               and every ride is a chance to discover something new.
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-4">
@@ -151,7 +152,7 @@ export default function SurfjackPage() {
             <CardContent className="pt-6 text-center">
               <MapPin className={`h-8 w-8 ${colors.accentIcon} mx-auto mb-3`} />
               <h3 className="font-medium mb-2">Artist Routes</h3>
-              <p className="text-sm text-amber-700">Discover local galleries, street art, and creative spaces. Curated by Surfjack's artist community.</p>
+              <p className="text-sm text-amber-700">Discover local galleries, street art, and creative spaces. Curated by Surfjack&rsquo;s artist community.</p>
             </CardContent>
           </Card>
         </div>
@@ -163,7 +164,7 @@ export default function SurfjackPage() {
           <h2 className="text-3xl font-bold mb-4">Book Your E-Bike</h2>
           <p className="text-amber-700 max-w-2xl mx-auto">
             Reserve your premium e-bike rental directly from Surfjack Hotel & Swim Club.
-            Choose your dates and we'll handle the rest.
+            Choose your dates and we&rsquo;ll handle the rest.
           </p>
         </div>
         
@@ -335,9 +336,9 @@ export default function SurfjackPage() {
                 </a>
               </Button>
               <Button asChild variant="outline" size="lg" className={`rounded-2xl ${colors.buttonOutline}`}>
-                <a href="/" className="flex items-center gap-2">
+                  <Link href="/" className="flex items-center gap-2">
                   <ArrowLeft className="h-5 w-5" /> Back to Oahu.BIKE
-                </a>
+                  </Link>
               </Button>
             </div>
           </CardContent>

@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import {
   Bike,
   Calendar,
@@ -58,10 +59,10 @@ export default function WhiteSandsPage() {
         <div className="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between">
           <div className="flex items-center gap-4">
             <Button asChild variant="ghost" size="sm">
-              <a href="/" className="flex items-center gap-2">
+              <Link href="/" className="flex items-center gap-2">
                 <ArrowLeft className="h-4 w-4" />
                 <span className="hidden sm:inline">Back to Oahu.BIKE</span>
-              </a>
+              </Link>
             </Button>
             <div className="h-6 border-r border-slate-300" />
             <div className="flex items-center gap-3">
@@ -149,7 +150,7 @@ export default function WhiteSandsPage() {
           <h2 className="text-3xl font-bold mb-4">Book Your E-Bike</h2>
           <p className="text-slate-600 max-w-2xl mx-auto">
             Reserve your premium e-bike rental directly from White Sands Hotel.
-            Choose your dates and we'll handle the rest.
+            Choose your dates and we&rsquo;ll handle the rest.
           </p>
         </div>
         
@@ -316,9 +317,9 @@ export default function WhiteSandsPage() {
                 </a>
               </Button>
               <Button asChild variant="outline" size="lg" className={`rounded-2xl ${colors.buttonOutline}`}>
-                <a href="/" className="flex items-center gap-2">
+                <Link href="/" className="flex items-center gap-2">
                   <ArrowLeft className="h-5 w-5" /> Back to Oahu.BIKE
-                </a>
+                </Link>
               </Button>
             </div>
           </CardContent>

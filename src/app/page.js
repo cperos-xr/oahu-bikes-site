@@ -297,7 +297,7 @@ export default function OahuBikeLanding() {
         <div className="text-center mb-8">
           <h2 className="text-2xl md:text-3xl font-semibold text-slate-900">Book Your E-Bike Adventure</h2>
           <p className="text-slate-600 mt-2 max-w-2xl mx-auto">
-            Choose your rental duration and we'll get you set up with the perfect e-bike experience in Honolulu.
+            Choose your rental duration and we&rsquo;ll get you set up with the perfect e-bike experience in Honolulu.
           </p>
         </div>
         
