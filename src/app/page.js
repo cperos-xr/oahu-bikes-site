@@ -6,14 +6,8 @@ import {
   Calendar,
   MapPin,
   Lock,
-  Smartphone,
   Hotel,
   KeySquare,
-  Ship,
-  Image as ImageIcon,
-  Waves,
-  ThumbsUp,
-  Star,
   Shield,
 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -193,7 +187,7 @@ export default function OahuBikeLanding() {
             <div className="aspect-[4/3] rounded-3xl overflow-hidden shadow-xl">
               <video
                 className="w-full h-full object-cover"
-                src="/gallery/overhead_clipped.mp4"
+                src="/gallery/reel.mp4"
                 autoPlay
                 muted
                 loop
@@ -379,7 +373,6 @@ export default function OahuBikeLanding() {
       {/* Gallery */}
       <section id="gallery" className="mx-auto max-w-6xl px-4 py-12 md:py-16">
         <div className="mb-8 flex items-center gap-3">
-          <ImageIcon className={T.brandIcon} />
           <h2 className="text-2xl md:text-3xl font-semibold text-slate-900">Gallery</h2>
         </div>
         <GalleryComponent />
@@ -501,7 +494,6 @@ export default function OahuBikeLanding() {
       <section id="partner-info" className="mx-auto max-w-6xl px-4 py-12 md:py-16">
         <div className="rounded-3xl border border-slate-100 bg-white p-6 md:p-8 shadow-sm">
           <h2 className="text-2xl md:text-3xl font-semibold text-slate-900 flex items-center gap-2">
-            <Hotel className={T.brandIcon} />
             Hotel Partners: Earn on every booking
           </h2>
           <p className="text-slate-600 mt-3 max-w-3xl">
