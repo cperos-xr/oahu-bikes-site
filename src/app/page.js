@@ -170,8 +170,8 @@ export default function OahuBikeLanding() {
             </p>
             <div className="mt-6 flex flex-wrap items-center gap-3">
               <Button asChild size="lg" className={`${T.cta} rounded-2xl`}>
-                <a href={BOOK_URL} target="_blank" rel="noreferrer" className="flex items-center gap-2">
-                  <Calendar className="h-5 w-5" /> Book your ride
+                <a href="#booking" className="flex items-center gap-2">
+                  <Calendar className="h-5 w-5" /> Go to booking
                 </a>
               </Button>
             </div>
