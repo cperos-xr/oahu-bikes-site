@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React from "react";
 import {
   Bike,
   Calendar,
@@ -14,9 +14,61 @@ import {
   Waves,
   ThumbsUp,
   Star,
+  Shield,
 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+
+// Interactive Gallery Component
+function GalleryComponent() {
+  const [featuredImage, setFeaturedImage] = React.useState(0);
+  
+  const images = [
+    "/jazzy.png",
+    "/punky.png", 
+    "/rocky.png",
+    "/simpy.png",
+    "/splatty.png",
+    "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=400&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1465310477141-6fb93167a273?q=80&w=400&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=400&auto=format&fit=crop",
+  ];
+
+  const handleImageClick = (index) => {
+    setFeaturedImage(index);
+  };
+
+  return (
+    <div className="grid md:grid-cols-2 gap-4">
+      {/* Featured Large Image - Left Half */}
+      <div className="aspect-square rounded-2xl overflow-hidden shadow-xl">
+        <div
+          className="w-full h-full bg-cover bg-center cursor-pointer transition-transform duration-300 hover:scale-105"
+          style={{ backgroundImage: `url('${images[featuredImage]}')` }}
+        />
+      </div>
+      
+      {/* Thumbnail Grid - Right Half */}
+      <div className="grid grid-cols-2 gap-4">
+        {images.filter((_, i) => i !== featuredImage).slice(0, 4).map((src, i) => {
+          const originalIndex = images.findIndex(img => img === src);
+          return (
+            <div 
+              key={originalIndex} 
+              className="aspect-square rounded-2xl overflow-hidden shadow-lg cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-xl"
+              onClick={() => handleImageClick(originalIndex)}
+            >
+              <div
+                className="w-full h-full bg-cover bg-center"
+                style={{ backgroundImage: `url('${src}')` }}
+              />
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
 
 /**
  * Oahu.BIKE Landing Page
@@ -72,50 +124,6 @@ const THEMES = {
 
 const T = THEMES[ACTIVE_THEME];
 
-// Large Rotating Logo Component for Hero Section
-function HeroRotatingLogo() {
-  const logos = [
-    '/jazzy.png',
-    '/punky.png', 
-    '/rocky.png',
-    '/simpy.png',
-    '/splatty.png'
-  ];
-  
-  const [currentLogo, setCurrentLogo] = useState(0);
-  const [isVisible, setIsVisible] = useState(true);
-  
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setIsVisible(false);
-      setTimeout(() => {
-        setCurrentLogo((prev) => (prev + 1) % logos.length);
-        setIsVisible(true);
-      }, 200); // Quick MTV-style transition
-    }, 1500); // Change every 1.5 seconds
-    
-    return () => clearInterval(interval);
-  }, [logos.length]);
-  
-  return (
-    <div className="relative w-32 h-32 md:w-40 md:h-40">
-      <img 
-        src={logos[currentLogo]}
-        alt="Oahu.BIKE Logo"
-        className={`w-full h-full object-contain transition-all duration-200 transform ${
-          isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
-        }`}
-        onError={(e) => {
-          // Fallback to bike icon if image fails to load
-          e.target.style.display = 'none';
-          e.target.nextSibling.style.display = 'block';
-        }}
-      />
-      <Bike className={`w-32 h-32 md:w-40 md:h-40 ${T.brandIcon} hidden absolute inset-0`} />
-    </div>
-  );
-}
-
 export default function OahuBikeLanding() {
   return (
     <main className={`min-h-screen bg-gradient-to-b ${T.bgGrad} text-slate-800`}>
@@ -134,8 +142,8 @@ export default function OahuBikeLanding() {
             <span className="font-semibold tracking-wide text-slate-900">Oahu.BIKE</span>
           </div>
           <div className="hidden md:flex items-center gap-6 text-sm">
-            <a href="#rentals" className={`hover:${T.brand.replace("text-", "text-")}`}>Rentals</a>
             <a href="#how" className={`hover:${T.brand.replace("text-", "text-")}`}>How it works</a>
+            <a href="#rentals" className={`hover:${T.brand.replace("text-", "text-")}`}>Rentals</a>
             <a href="#hotels" className={`hover:${T.brand.replace("text-", "text-")}`}>Partner Hotels</a>
             <a href="#pickup" className={`hover:${T.brand.replace("text-", "text-")}`}>Pickup</a>
             <a href="#faq" className={`hover:${T.brand.replace("text-", "text-")}`}>FAQ</a>
@@ -184,11 +192,6 @@ export default function OahuBikeLanding() {
           </div>
 
           <div className="relative">
-            {/* Rotating Logo - prominent display */}
-            <div className="flex justify-center mb-6">
-              <HeroRotatingLogo />
-            </div>
-            
             {/* Main scenic image */}
             <div
               aria-hidden="true"
@@ -209,12 +212,30 @@ export default function OahuBikeLanding() {
       </section>
 
       {/* Rentals */}
-      <section id="rentals" className="mx-auto max-w-6xl px-4 py-12 md:py-16">
-        <div className="mb-8">
-          <h2 className="text-2xl md:text-3xl font-semibold text-slate-900">Simple pricing</h2>
-          <p className="text-slate-600 mt-2">Day rentals with optional hotel delivery. Helmets and locks included.</p>
-        </div>
+      <section id="rentals" className="bg-slate-50/50 py-12 md:py-16">
+        <div className="mx-auto max-w-6xl px-4">
+          <div className="mb-8 text-center">
+            <h2 className="text-2xl md:text-3xl font-semibold text-slate-900">Simple pricing</h2>
+            <p className="text-slate-600 mt-2">Day rentals with optional hotel delivery. Helmets and locks included.</p>
+          </div>
         <div className="grid md:grid-cols-3 gap-6">
+          <Card className={`rounded-3xl relative overflow-hidden ${T.border}`}>
+            <div className="absolute inset-0 bg-gradient-to-br from-white/40 to-transparent" />
+            <CardHeader><CardTitle>Half‑Day Rental</CardTitle></CardHeader>
+            <CardContent className="space-y-4">
+              <p className="text-4xl font-semibold">$35<span className="text-base font-normal text-slate-500"> / half day</span></p>
+              <ul className="space-y-2 text-slate-600 text-sm">
+                <li>4 hours of riding time</li>
+                <li>Perfect for beach & downtown</li>
+                <li>Same great bikes & gear</li>
+                <li>Morning or afternoon slots</li>
+              </ul>
+              <Button asChild className={`w-full ${T.cta} rounded-2xl`}>
+                <a href="#booking">Book Now</a>
+              </Button>
+            </CardContent>
+          </Card>
+
           <Card className={`rounded-3xl ${T.border}`}>
             <CardHeader><CardTitle>Full‑Day Rental</CardTitle></CardHeader>
             <CardContent className="space-y-4">
@@ -226,7 +247,7 @@ export default function OahuBikeLanding() {
                 <li>Flexible scheduling available</li>
               </ul>
               <Button asChild className={`w-full ${T.cta} rounded-2xl`}>
-                <a href={BOOK_URL} target="_blank" rel="noreferrer">Reserve now</a>
+                <a href="#booking">Book Now</a>
               </Button>
             </CardContent>
           </Card>
@@ -242,26 +263,11 @@ export default function OahuBikeLanding() {
                 <li>Flexible scheduling available</li>
               </ul>
               <Button asChild className={`w-full ${T.cta} rounded-2xl`}>
-                <a href={BOOK_URL} target="_blank" rel="noreferrer">See availability</a>
+                <a href="#booking">Book Now</a>
               </Button>
             </CardContent>
           </Card>
-
-          <Card className={`rounded-3xl relative overflow-hidden ${T.border}`}>
-            <div className="absolute inset-0 bg-gradient-to-br from-white/40 to-transparent" />
-            <CardHeader><CardTitle>Hotel Delivery</CardTitle></CardHeader>
-            <CardContent className="space-y-4">
-              <p className="text-4xl font-semibold">$35<span className="text-base font-normal text-slate-500"> flat</span></p>
-              <ul className="space-y-2 text-slate-600 text-sm">
-                <li>Drop‑off at lobby or curb</li>
-                <li>Waikīkī & nearby areas</li>
-                <li>Schedule at checkout</li>
-              </ul>
-              <Button asChild variant="outline" className={`w-full rounded-2xl ${T.ctaOutline}`}>
-                <a href={BOOK_URL} target="_blank" rel="noreferrer">Add delivery</a>
-              </Button>
-            </CardContent>
-          </Card>
+          </div>
         </div>
       </section>
 
@@ -286,33 +292,57 @@ export default function OahuBikeLanding() {
         </div>
       </section>
 
-      {/* Partner Hotels */}
-      <section id="hotels" className="mx-auto max-w-6xl px-4 py-12 md:py-16">
-        <div className="mb-8 flex items-center gap-3">
-          <ThumbsUp className={T.brandIcon} />
-          <h2 className="text-2xl md:text-3xl font-semibold text-slate-900">Partner Hotels</h2>
+      {/* Main Booking Section */}
+      <section id="booking" className="mx-auto max-w-6xl px-4 py-12 md:py-16">
+        <div className="text-center mb-8">
+          <h2 className="text-2xl md:text-3xl font-semibold text-slate-900">Book Your E-Bike Adventure</h2>
+          <p className="text-slate-600 mt-2 max-w-2xl mx-auto">
+            Choose your rental duration and we'll get you set up with the perfect e-bike experience in Honolulu.
+          </p>
         </div>
-        <div className="grid md:grid-cols-3 gap-6">
-          {["Waikīkī Beachfront", "Ala Moana Area", "Kapiʻolani / McCully"].map((zone, i) => (
-            <Card key={i} className={`rounded-3xl ${T.border}`}>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2"><Hotel className={T.brandIcon} /> {zone}</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-2 text-sm text-slate-600">
-                <p>Pick up directly at the hotel rack. Availability varies by date.</p>
-                <Button asChild className={`${T.cta} rounded-2xl`}>
-                  <a href={BOOK_URL} target="_blank" rel="noreferrer">Rent Bike at this zone</a>
-                </Button>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-        <div className="mt-6 text-sm text-slate-600">
-          Are you a hotel? <a className={`${T.brand} underline`} href="#partner-info">Learn about revenue share</a>.
-        </div>
+        
+        <Card className={`rounded-3xl ${T.border} max-w-4xl mx-auto bg-white shadow-lg`}>
+          <CardContent className="p-8 md:p-12">
+            <div className="text-center">
+              <h3 className="text-2xl font-bold mb-6">Reserve Your E-Bike</h3>
+              <div className="bg-slate-50 rounded-2xl p-8 border border-slate-200">
+                <p className={`${T.brand} mb-4 text-lg`}>
+                  🚀 Peek Pro booking system integration coming soon!
+                </p>
+                <p className="text-sm text-slate-600 mb-6">
+                  Select your preferred rental duration above, then complete your booking here. 
+                  The system will automatically set up your half-day, full-day, or multi-day rental.
+                </p>
+                <div className="grid md:grid-cols-3 gap-4 mb-6">
+                  <Button 
+                    className={`${T.cta} rounded-2xl flex items-center justify-center gap-2`}
+                  >
+                    <Calendar className="h-4 w-4" />
+                    Half-Day ($35)
+                  </Button>
+                  <Button 
+                    className={`${T.cta} rounded-2xl flex items-center justify-center gap-2`}
+                  >
+                    <Calendar className="h-4 w-4" />
+                    Full-Day ($60)
+                  </Button>
+                  <Button 
+                    className={`${T.cta} rounded-2xl flex items-center justify-center gap-2`}
+                  >
+                    <Calendar className="h-4 w-4" />
+                    Multi-Day ($50/day)
+                  </Button>
+                </div>
+                <p className="text-xs text-slate-500">
+                  ✓ Contactless pickup ✓ Helmets & U-locks included ✓ Flexible scheduling
+                </p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
       </section>
 
-      {/* Pickup (secondary model) */}
+  {/* Pickup (secondary model) */}
       <section id="pickup" className="mx-auto max-w-6xl px-4 py-12 md:py-16">
         <h2 className="text-2xl md:text-3xl font-semibold text-slate-900">Free pickup & return (optional)</h2>
         <p className="text-slate-600 mt-2 max-w-3xl">
@@ -326,7 +356,7 @@ export default function OahuBikeLanding() {
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
               src="https://www.google.com/maps?q=831+Pumehana+St,+Honolulu,+HI+96826&output=embed"
-            />
+            ></iframe>
           </div>
           <Card className={`rounded-3xl ${T.border}`}>
             <CardContent className="p-6 space-y-4">
@@ -352,61 +382,124 @@ export default function OahuBikeLanding() {
         </div>
       </section>
 
-      {/* FAQ */}
-      <section id="faq" className="mx-auto max-w-6xl px-4 py-12 md:py-16">
-        <h2 className="text-2xl md:text-3xl font-semibold text-slate-900 mb-6">FAQ</h2>
-        <div className="grid md:grid-cols-2 gap-6">
-          <Card className={`rounded-3xl ${T.border}`}>
-            <CardContent className="p-6">
-              <h3 className="font-medium">Do I need an account to book?</h3>
-              <p className="text-sm text-slate-600 mt-1">No — our secure booking page handles everything. Just tap "Book now."</p>
-            </CardContent>
-          </Card>
-          <Card className={`rounded-3xl ${T.border}`}>
-            <CardContent className="p-6">
-              <h3 className="font-medium">How do I unlock the bike?</h3>
-              <p className="text-sm text-slate-600 mt-1">You’ll receive a text with your key lockbox code. Take the key to release the U‑lock — similar to Airbnb check‑in.</p>
-            </CardContent>
-          </Card>
-          <Card className={`rounded-3xl ${T.border}`}>
-            <CardContent className="p-6">
-              <h3 className="font-medium">Where do I pick up?</h3>
-              <p className="text-sm text-slate-600 mt-1">If you’re staying at a partner hotel, your bike is on‑site. Otherwise, use our designated pickup spot in town.</p>
-            </CardContent>
-          </Card>
-          <Card className={`rounded-3xl ${T.border}`}>
-            <CardContent className="p-6">
-              <h3 className="font-medium">Group bookings?</h3>
-              <p className="text-sm text-slate-600 mt-1">Yes — we have 6 foldable e‑bikes and can arrange staggered starts.</p>
-            </CardContent>
-          </Card>
-        </div>
-      </section>
-
       {/* Gallery */}
       <section id="gallery" className="mx-auto max-w-6xl px-4 py-12 md:py-16">
         <div className="mb-8 flex items-center gap-3">
           <ImageIcon className={T.brandIcon} />
           <h2 className="text-2xl md:text-3xl font-semibold text-slate-900">Gallery</h2>
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <GalleryComponent />
+      </section>
+
+
+      {/* U-Lock Tutorial Video */}
+      <section className="mx-auto max-w-6xl px-4 py-12 md:py-16">
+        <div className="text-center mb-8">
+          <h2 className="text-2xl md:text-3xl font-semibold text-slate-900 mb-4">How to Use Your U-Lock</h2>
+          <p className="text-slate-600 max-w-2xl mx-auto">
+            Proper locking technique is essential for bike security. Watch this quick tutorial 
+            to learn the most effective way to secure your e-bike.
+          </p>
+        </div>
+        
+        <div className="max-w-4xl mx-auto">
+          <Card className={`rounded-3xl ${T.border} overflow-hidden`}>
+            <CardContent className="p-0">
+              <div className="aspect-video bg-slate-900 relative">
+                <iframe
+                  width="100%"
+                  height="100%"
+                  src="https://www.youtube.com/embed/Vw9erXJvByE"
+                  title="How to Use a U-Lock Properly"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  className="absolute inset-0"
+                />
+              </div>
+              <div className="p-6">
+                <div className="flex items-center gap-3 mb-3">
+                  <Shield className={`h-5 w-5 ${T.brandIcon}`} />
+                  <h3 className="font-medium">Essential Security Tips</h3>
+                </div>
+                <ul className="text-sm text-slate-600 space-y-2">
+                  <li>• Always lock your bike frame AND wheel to a secure rack</li>
+                  <li>• Use the smallest U-lock setting to minimize leverage space</li>
+                  <li>• Position the keyhole facing down to prevent tampering</li>
+                  <li>• Never leave bikes unattended for extended periods</li>
+                </ul>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+
+      {/* Partner Hotels */}
+      <section id="hotels" className="mx-auto max-w-6xl px-4 py-12 md:py-16">
+        <div className="mb-8">
+          <h2 className="text-2xl md:text-3xl font-semibold text-slate-900">Partner Hotels</h2>
+        </div>
+        <div className="grid md:grid-cols-3 gap-6">
           {[
-            "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=400&auto=format&fit=crop",
-            "https://images.unsplash.com/photo-1571068316344-75bc76f77890?q=80&w=400&auto=format&fit=crop",
-            "https://images.unsplash.com/photo-1502999793241-d0b7bfed92d1?q=80&w=400&auto=format&fit=crop",
-            "https://images.unsplash.com/photo-1559827260-dc66d52bef19?q=80&w=400&auto=format&fit=crop",
-            "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=800&auto=format&fit=crop",
-            "https://images.unsplash.com/photo-1544551763-46a013bb70d5?q=80&w=400&auto=format&fit=crop",
-            "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=400&auto=format&fit=crop",
-            "https://images.unsplash.com/photo-1465310477141-6fb93167a273?q=80&w=400&auto=format&fit=crop",
-          ].map((src, i) => (
-            <div key={i} className={`aspect-square rounded-2xl overflow-hidden shadow-lg ${i === 4 ? 'md:col-span-2' : ''}`}>
-              <div
-                className="w-full h-full bg-cover bg-center hover:scale-105 transition-transform duration-300"
-                style={{ backgroundImage: `url('${src}')` }}
-              />
-            </div>
+            {
+              name: "Surfjack Hotel & Swim Club",
+              location: "Waikīkī",
+              description: "Retro-modern boutique hotel with vibrant local art and poolside vibes",
+              slug: "surfjack",
+              featured: true
+            },
+            {
+              name: "White Sands Hotel",
+              location: "Waikīkī Beach", 
+              description: "Stylish beachfront hotel with tropical modern design",
+              slug: "whitesands",
+              featured: true
+            },
+            {
+              name: "The Monarch Hotel",
+              location: "Waikīkī",
+              description: "Contemporary hotel with rooftop bar and city views",
+              slug: "monarch",
+              featured: false
+            }
+          ].map((hotel, i) => (
+            <Card key={i} className={`rounded-3xl ${T.border}`}>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Hotel className={T.brandIcon} /> 
+                  <div>
+                    <div className="text-base">{hotel.name}</div>
+                    <div className="text-xs text-slate-500 font-normal">{hotel.location}</div>
+                  </div>
+                  {hotel.featured && (
+                    <span className={`ml-auto text-xs px-2 py-1 rounded-full bg-${T.brandIcon.replace('text-', 'bg-')}/10 text-${T.brandIcon.replace('text-', 'text-')}`}>
+                      Popular
+                    </span>
+                  )}
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                <p className="text-sm text-slate-600">{hotel.description}</p>
+                <div className="flex gap-2">
+                  <Button asChild className={`w-full ${T.cta} rounded-2xl text-sm`}>
+                    <a href={`/hotels/${hotel.slug}`}>View Hotel Page & Book</a>
+                  </Button>
+                </div>
+                <div className="text-xs text-slate-500">
+                  ✓ On-site bike pickup ✓ Contactless unlock ✓ Integrated booking
+                </div>
+              </CardContent>
+            </Card>
           ))}
+        </div>
+        <div className="mt-8 p-6 rounded-2xl bg-slate-50 border border-slate-100">
+          <h3 className="font-medium text-slate-900 mb-2">Hotel-Specific Experience</h3>
+          <p className="text-sm text-slate-600 mb-3">
+            Each partner hotel has its own dedicated booking page with custom branding, specific pickup instructions, and local recommendations.
+          </p>
+          <div className="text-sm text-slate-600">
+            Are you a hotel? <a className={`${T.brand} underline`} href="#partner-info">Learn about revenue share</a>.
+          </div>
         </div>
       </section>
 
@@ -441,7 +534,7 @@ export default function OahuBikeLanding() {
         <div className="mx-auto max-w-6xl px-4 py-8 grid md:grid-cols-3 gap-6 items-start">
           <div>
             <div className="flex items-center gap-2">
-              <Waves className={`h-5 w-5 ${T.brandIcon}`} />
+              <Bike className={`h-5 w-5 ${T.brandIcon}`} />
               <span className="font-semibold">Oahu.BIKE</span>
             </div>
             <p className="text-sm text-slate-600 mt-2">Minimal footprint, maximum fun. See more by e‑bike.</p>
