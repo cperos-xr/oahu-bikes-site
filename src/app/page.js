@@ -18,10 +18,10 @@ function GalleryComponent() {
   const [featuredImage, setFeaturedImage] = React.useState(0);
   
   const images = [
-    "/gallery/004.png",
+    "/gallery/005.png",
     "/gallery/001.png",
     "/gallery/002.png",
-    "/gallery/005.png",
+    "/gallery/004.png",
     "/gallery/003.png",
   ];
 
