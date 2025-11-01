@@ -14,7 +14,7 @@ const SOUNDS = [
   { id: "master-made", label: "Master Made Me", file: "/dug/master_made_me_this_collar.mp3" },
   { id: "name-is-dug", label: "Name is Dug", file: "/dug/name_is_dug.mp3" },
   { id: "stop-dogs", label: "Stop Dogs", file: "/dug/stop_dogs.mp3" },
-  { id: "yes", label: "Yes", file: "/dug/yes.mp3" },
+  { id: "squirrel", label: "Squirrel", file: "/dug/squirrel.mp3" },
 ];
 
 export default function DugSoundboard() {
