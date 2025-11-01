@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import { Volume2, Home } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -39,9 +40,9 @@ export default function DugSoundboard() {
             <span className="font-semibold tracking-wide text-slate-900">Dug Soundboard</span>
           </div>
           <Button asChild variant="outline" className="rounded-2xl">
-            <a href="/" className="flex items-center gap-2">
+            <Link href="/" className="flex items-center gap-2">
               <Home className="h-4 w-4" /> Home
-            </a>
+            </Link>
           </Button>
         </div>
       </nav>
