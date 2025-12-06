@@ -67,7 +67,7 @@ export default function WhiteSandsPage() {
             <div className="h-6 border-r border-slate-300" />
             <div className="flex items-center gap-3">
               <a href={hotel.website} target="_blank" rel="noreferrer" className="hover:opacity-80 transition-opacity">
-                <img 
+                <Image 
                   src={hotel.logo}
                   alt={`${hotel.name} Logo`}
                   className="h-8 w-auto object-contain"
