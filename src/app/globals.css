@@ -120,3 +120,31 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Peek Pro Widget - allow full expansion without clipping */
+#peek-book-button-container,
+.peek-widget,
+.peek-embed,
+[class*="peek"] {
+  max-width: none !important;
+  overflow: visible !important;
+}
+
+/* Force widget content to use full available width */
+.peek-widget iframe,
+.peek-widget > div,
+[class*="peek"] iframe,
+[class*="peek"] > div {
+  width: 100% !important;
+  max-width: none !important;
+}
+
+/* Make booking section itself full-width and centered */
+#booking {
+  overflow: visible !important;
+}
+
+/* Ensure any inner wrappers don't clip */
+#booking * {
+  overflow: visible !important;
+}

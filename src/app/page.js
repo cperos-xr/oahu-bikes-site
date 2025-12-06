@@ -73,7 +73,7 @@ function GalleryComponent() {
  */
 
 // Config (env vars if present, otherwise sensible defaults)
-const BOOK_URL = process.env.NEXT_PUBLIC_BOOK_URL || "https://book.oahu.bike"; // point this to Peek Pro once ready
+const BOOK_URL = process.env.NEXT_PUBLIC_BOOK_URL || "https://book.peek.com/s/319bb68d-5272-40cc-b627-a3787f443677/4xvox"; // Peek Pro booking link
 const CONTACT_EMAIL = process.env.NEXT_PUBLIC_CONTACT_EMAIL || "info@oahu.bike";
 
 // ---- Theme system ---------------------------------------------------------
@@ -115,6 +115,39 @@ const THEMES = {
 
 const T = THEMES[ACTIVE_THEME];
 
+function PeekButton() {
+  const [mounted, setMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    // Render a plain link for SSR; Peek will enhance it on the client
+    return (
+      <a
+        href={BOOK_URL}
+        className={`${T.cta} rounded-2xl flex items-center justify-center gap-2 py-4 px-8 text-white font-medium text-lg transition-all hover:shadow-lg`}
+      >
+        <Calendar className="h-6 w-6" />
+        Book Your Ride
+      </a>
+    );
+  }
+
+  return (
+    <a
+      href={BOOK_URL}
+      className={`${T.cta} rounded-2xl flex items-center justify-center gap-2 py-4 px-8 text-white font-medium text-lg transition-all hover:shadow-lg`}
+      data-embed="true"
+      data-button-text="Book Now"
+    >
+      <Calendar className="h-6 w-6" />
+      Book Your Ride
+    </a>
+  );
+}
+
 export default function OahuBikeLanding() {
   return (
     <main className={`min-h-screen bg-gradient-to-b ${T.bgGrad} text-slate-800`}>
@@ -135,10 +168,10 @@ export default function OahuBikeLanding() {
           <div className="hidden md:flex items-center gap-6 text-sm">
             <a href="#how" className={`hover:${T.brand.replace("text-", "text-")}`}>How it works</a>
             <a href="#rentals" className={`hover:${T.brand.replace("text-", "text-")}`}>Rentals</a>
-            <a href="#hotels" className={`hover:${T.brand.replace("text-", "text-")}`}>Partner Hotels</a>
+            <a href="#booking" className={`hover:${T.brand.replace("text-", "text-")}`}>Booking</a>
             <a href="#pickup" className={`hover:${T.brand.replace("text-", "text-")}`}>Pickup</a>
-            <a href="#faq" className={`hover:${T.brand.replace("text-", "text-")}`}>FAQ</a>
             <a href="#gallery" className={`hover:${T.brand.replace("text-", "text-")}`}>Gallery</a>
+            <a href="#faq" className={`hover:${T.brand.replace("text-", "text-")}`}>FAQ</a>
           </div>
           <div className="flex items-center gap-3">
             <Button asChild className={`${T.cta} rounded-2xl`}>
@@ -281,53 +314,50 @@ export default function OahuBikeLanding() {
       </section>
 
       {/* Main Booking Section */}
-      <section id="booking" className="mx-auto max-w-6xl px-4 py-12 md:py-16">
-        <div className="text-center mb-8">
-          <h2 className="text-2xl md:text-3xl font-semibold text-slate-900">Book Your E-Bike Adventure</h2>
-          <p className="text-slate-600 mt-2 max-w-2xl mx-auto">
-            Choose your rental duration and we&rsquo;ll get you set up with the perfect e-bike experience in Honolulu.
-          </p>
-        </div>
-        
-        <Card className={`rounded-3xl ${T.border} max-w-4xl mx-auto bg-white shadow-lg`}>
-          <CardContent className="p-8 md:p-12">
-            <div className="text-center">
-              <h3 className="text-2xl font-bold mb-6">Reserve Your E-Bike</h3>
-              <div className="bg-slate-50 rounded-2xl p-8 border border-slate-200">
-                <p className={`${T.brand} mb-4 text-lg`}>
-                  🚀 Peek Pro booking system integration coming soon!
-                </p>
-                <p className="text-sm text-slate-600 mb-6">
-                  Select your preferred rental duration above, then complete your booking here. 
-                  The system will automatically set up your half-day, full-day, or multi-day rental.
-                </p>
-                <div className="grid md:grid-cols-3 gap-4 mb-6">
-                  <Button 
-                    className={`${T.cta} rounded-2xl flex items-center justify-center gap-2`}
-                  >
-                    <Calendar className="h-4 w-4" />
-                    Half-Day ($35)
-                  </Button>
-                  <Button 
-                    className={`${T.cta} rounded-2xl flex items-center justify-center gap-2`}
-                  >
-                    <Calendar className="h-4 w-4" />
-                    Full-Day ($60)
-                  </Button>
-                  <Button 
-                    className={`${T.cta} rounded-2xl flex items-center justify-center gap-2`}
-                  >
-                    <Calendar className="h-4 w-4" />
-                    Multi-Day ($50/day)
-                  </Button>
-                </div>
-                <p className="text-xs text-slate-500">
-                  ✓ Contactless pickup ✓ Helmets & U-locks included ✓ Flexible scheduling
-                </p>
+      <section
+        id="booking"
+        className="py-12 md:py-16 bg-gradient-to-b from-slate-50 to-white"
+      >
+        <div className="mx-auto max-w-6xl px-4">
+          <div className="max-w-3xl mx-auto text-center mb-10">
+            
+          </div>
+
+          {/* Card-style block for the button */}
+          <div className="max-w-3xl mx-auto">
+            <div className="rounded-3xl bg-white border border-slate-100 shadow-sm px-6 py-8 md:px-10 md:py-10 text-center">
+              <h2 className="text-2xl md:text-3xl font-semibold text-slate-900">
+              Book Your E-Bike Adventure
+              </h2>
+              <p className="text-slate-600 mt-2">
+                Pick your date and time, confirm your details, and we&rsquo;ll get
+                your e‑bike ready in Waikīkī.
+              </p>
+              <p className="text-slate-600 text-sm mb-6">
+                Secure checkout, instant confirmation, and flexible start
+                times. Your booking opens in a simple pop‑up so you don&rsquo;t
+                lose your place on the site.
+              </p>
+
+              <div className="flex justify-center">
+                <a
+                  href={BOOK_URL}
+                  target="_blank"
+                  rel="noreferrer"
+                  className={`${T.cta} rounded-2xl flex items-center justify-center gap-2 py-4 px-10 text-white font-semibold text-lg transition-all hover:shadow-lg`}
+                >
+                  <Calendar className="h-6 w-6" />
+                  Book Your Ride
+                </a>
               </div>
+
+              <p className="text-xs text-slate-500 mt-6">
+                ✓ Contactless pickup ✓ Helmets &amp; U‑lock included ✓ Flexible
+                scheduling
+              </p>
             </div>
-          </CardContent>
-        </Card>
+          </div>
+        </div>
       </section>
 
   {/* Pickup (secondary model) */}
