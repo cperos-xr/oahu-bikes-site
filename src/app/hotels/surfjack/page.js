@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
 
 export default function SurfjackPage() {
   const hotel = {
@@ -72,7 +73,7 @@ export default function SurfjackPage() {
             <div className="h-6 border-r border-slate-300" />
             <div className="flex items-center gap-3">
               <a href={hotel.website} target="_blank" rel="noreferrer" className="hover:opacity-80 transition-opacity">
-                <img 
+                <Image
                   src={hotel.logo}
                   alt={`${hotel.name} Logo`}
                   className="h-10 w-auto object-contain"

@@ -20,6 +20,7 @@ import {
 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
 
 // Hotel configurations with unique branding
 const HOTEL_CONFIGS = {
@@ -136,7 +137,7 @@ export default function HotelPage() {
             <div className="h-6 border-r border-slate-300" />
             <div className="flex items-center gap-3">
               <a href={hotel.website} target="_blank" rel="noreferrer" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
-                <img 
+                <Image 
                   src={hotel.logo}
                   alt={`${hotel.name} Logo`}
                   className="h-8 w-auto object-contain"
@@ -144,6 +145,8 @@ export default function HotelPage() {
                     e.target.style.display = 'none';
                     e.target.nextSibling.style.display = 'flex';
                   }}
+                  width={32}
+                  height={32}
                 />
                 <div className={`hidden sm:flex items-center gap-2 ${colors.accentIcon}`}>
                   <Hotel className="h-6 w-6" />
