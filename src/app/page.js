@@ -11,6 +11,7 @@ import {
   Hotel,
   KeySquare,
   Shield,
+  Users,
 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -214,6 +215,7 @@ export default function OahuBikeLanding() {
               <div className="flex items-center gap-2"><Bike className={`${T.brandIcon} h-4 w-4`} /> Foldable RadExpand 5</div>
               <div className="flex items-center gap-2"><Lock className={`${T.brandIcon} h-4 w-4`} /> U‑lock included</div>
               <div className="flex items-center gap-2"><KeySquare className={`${T.brandIcon} h-4 w-4`} /> Key lockbox access</div>
+              <div className="flex items-center gap-2"><Users className={`${T.brandIcon} h-4 w-4`} /> Group discounts</div>
             </div>
           </div>
 
@@ -240,7 +242,7 @@ export default function OahuBikeLanding() {
         <div className="mx-auto max-w-6xl px-4">
           <div className="mb-8 text-center">
             <h2 className="text-2xl md:text-3xl font-semibold text-slate-900">Simple pricing</h2>
-            <p className="text-slate-600 mt-2">Day rentals with optional hotel delivery. Helmets and locks included.</p>
+            <p className="text-slate-600 mt-2">Day rentals. Helmets and locks included.</p>
           </div>
         <div className="grid md:grid-cols-3 gap-6">
           <Card className={`rounded-3xl relative overflow-hidden ${T.border}`}>
@@ -260,14 +262,14 @@ export default function OahuBikeLanding() {
           </Card>
 
           <Card className={`rounded-3xl ${T.border}`}>
-            <CardHeader><CardTitle>Full‑Day Rental</CardTitle></CardHeader>
+            <CardHeader><CardTitle>24‑Hour Rental</CardTitle></CardHeader>
             <CardContent className="space-y-4">
-              <p className="text-4xl font-semibold">$60<span className="text-base font-normal text-slate-500"> / day</span></p>
+              <p className="text-4xl font-semibold">$60<span className="text-base font-normal text-slate-500"> / 24 hours</span></p>
               <ul className="space-y-2 text-slate-600 text-sm">
                 <li>Unlimited miles</li>
                 <li>Helmet, U‑lock included</li>
                 <li>Hotel or pickup options</li>
-                <li>Flexible scheduling available</li>
+                <li>24 hours from pickup — not 9–5</li>
               </ul>
               <Button asChild className={`w-full ${T.cta} rounded-2xl`}>
                 <a href="#booking">Book Now</a>
@@ -294,106 +296,94 @@ export default function OahuBikeLanding() {
         </div>
       </section>
 
-      {/* How it works — hotel‑first */}
-      <section id="how" className="mx-auto max-w-6xl px-4 py-12 md:py-16">
-        <h2 className="text-2xl md:text-3xl font-semibold text-slate-900 mb-8">How it works</h2>
-        <div className="grid md:grid-cols-4 gap-6">
-          {[
-            { icon: Hotel, title: "Stay & Reserve", text: "Pick your partner hotel location and time online." },
-            { icon: KeySquare, title: "Contactless Unlock", text: "We text a lockbox code. Grab the key, helmet & U‑lock." },
-            { icon: MapPin, title: "Ride", text: "Follow our scenic routes or explore at your pace." },
-            { icon: Lock, title: "Return", text: "Lock up in the designated rack and drop key back in lockbox." },
-          ].map((s, i) => (
-            <Card key={i} className={`rounded-3xl ${T.border}`}>
-              <CardContent className="pt-6">
-                <s.icon className={`h-6 w-6 ${T.brandIcon}`} />
-                <h3 className="mt-3 font-medium">{s.title}</h3>
-                <p className="text-sm text-slate-600 mt-1">{s.text}</p>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-      </section>
-
-      {/* Main Booking Section */}
-      <section
-        id="booking"
-        className="py-12 md:py-16 bg-gradient-to-b from-slate-50 to-white"
-      >
-        <div className="mx-auto max-w-6xl px-4">
-          <div className="max-w-3xl mx-auto text-center mb-10">
-            
-          </div>
-
-          {/* Card-style block for the button */}
-          <div className="max-w-3xl mx-auto">
-            <div className="rounded-3xl bg-white border border-slate-100 shadow-sm px-6 py-8 md:px-10 md:py-10 text-center">
-              <h2 className="text-2xl md:text-3xl font-semibold text-slate-900">
-              Book Your E-Bike Adventure
-              </h2>
-              <p className="text-slate-600 mt-2">
-                Pick your date and time, confirm your details, and we&rsquo;ll get
-                your e‑bike ready in Waikīkī.
-              </p>
-              <p className="text-slate-600 text-sm mb-6">
-                Secure checkout, instant confirmation, and flexible start
-                times. Your booking opens in a simple pop‑up so you don&rsquo;t
-                lose your place on the site.
-              </p>
-
-              <div className="flex justify-center">
+      {/* Unified How it works + Booking Bubble */}
+      <section id="how" className="mx-auto max-w-6xl px-2 md:px-4 py-12 md:py-16">
+        <div className="rounded-3xl bg-slate-50/90 border border-slate-100 shadow-sm px-4 md:px-10 py-10 flex flex-col gap-8">
+          {/* Modern horizontal booking CTA, now visually unified */}
+          <div className="w-full">
+            <div className="rounded-2xl bg-white border border-slate-100 shadow-sm px-6 py-6 md:px-10 md:py-8 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+              <div className="flex-1 min-w-0">
+                <h2 className="text-2xl md:text-3xl font-semibold text-slate-900 mb-1 md:mb-0">Book Your E-Bike Adventure</h2>
+                <p className="text-slate-600 text-sm md:text-base mb-2 md:mb-0">Reserve online, get instant confirmation, and pick up your e‑bike at your convenience.</p>
+                <ul className="flex flex-wrap gap-3 text-xs text-slate-500 mt-2 md:mt-3">
+                  <li className="flex items-center gap-1"><Calendar className="h-4 w-4 text-sky-400" /> Flexible scheduling</li>
+                  <li className="flex items-center gap-1"><KeySquare className="h-4 w-4 text-sky-400" /> Contactless pickup</li>
+                  <li className="flex items-center gap-1"><Lock className="h-4 w-4 text-sky-400" /> Helmet & U‑lock included</li>
+                </ul>
+              </div>
+              <div className="flex-shrink-0 flex items-center justify-center w-full md:w-auto">
                 <a
                   href={BOOK_URL}
                   target="_blank"
                   rel="noreferrer"
-                  className={`${T.cta} rounded-2xl flex items-center justify-center gap-2 py-4 px-10 text-white font-semibold text-lg transition-all hover:shadow-lg`}
+                  className={`${T.cta} rounded-2xl flex items-center justify-center gap-2 py-4 px-8 text-white font-semibold text-lg transition-all hover:shadow-lg w-full md:w-auto`}
                 >
                   <Calendar className="h-6 w-6" />
                   Book Your Ride
                 </a>
               </div>
-
-              <p className="text-xs text-slate-500 mt-6">
-                ✓ Contactless pickup ✓ Helmets &amp; U‑lock included ✓ Flexible
-                scheduling
-              </p>
             </div>
+          </div>
+          <h2 className="text-2xl md:text-3xl font-semibold text-slate-900 mb-4 md:mb-8">How it works</h2>
+          <div className="grid md:grid-cols-3 gap-6">
+            {[
+              { icon: KeySquare, title: "Contactless Unlock", text: "We text a lockbox code. Grab the key, helmet & U‑lock." },
+              { icon: MapPin, title: "Ride", text: "Follow our scenic routes or explore at your pace." },
+              { icon: Lock, title: "Return", text: "Lock up in the designated rack and drop key back in lockbox." },
+            ].map((s, i) => (
+              <Card key={i} className={`rounded-3xl bg-white border border-slate-100 shadow-sm`}>
+                <CardContent className="pt-6 pb-6 px-4 flex flex-col items-center text-center">
+                  <s.icon className={`h-6 w-6 ${T.brandIcon}`} />
+                  <h3 className="mt-3 font-medium">{s.title}</h3>
+                  <p className="text-sm text-slate-600 mt-1">{s.text}</p>
+                </CardContent>
+              </Card>
+            ))}
           </div>
         </div>
       </section>
+
 
   {/* Pickup (secondary model) */}
       <section id="pickup" className="mx-auto max-w-6xl px-4 py-12 md:py-16">
         <h2 className="text-2xl md:text-3xl font-semibold text-slate-900">Free pickup & return (optional)</h2>
         <p className="text-slate-600 mt-2 max-w-3xl">
-          Prefer not to use a partner hotel? Use our designated pickup/return spot near the 7‑Eleven on Kapiʻolani Blvd between Pumehana & McCully. Exact pin shared after booking.
+          Choose from several convenient pickup and return locations around Honolulu, including McCully, Magic Island, Kaimana Beach, and San Souci. Exact pins and instructions are shared after booking.
         </p>
         <div className="mt-6 grid md:grid-cols-2 gap-6 items-stretch">
           <div className="rounded-3xl overflow-hidden shadow border bg-white border-slate-100">
             <iframe
-              title="Pickup Map"
+              title="Pickup & Drop-off Locations Map"
               className="w-full h-72 md:h-full"
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              src="https://www.google.com/maps?q=831+Pumehana+St,+Honolulu,+HI+96826&output=embed"
+              src="https://www.google.com/maps/d/u/5/embed?mid=1pgNfmWNxH8sdIf0lxNy1P1gBCCwq_-I&ehbc=2E312F"
             ></iframe>
+            <div className="p-4">
+              <h3 className="font-medium mb-2">Standard Pickup/Drop-off Locations</h3>
+              <ul className="list-disc pl-5 text-sm text-slate-600 space-y-1">
+                <li><strong>McCully Recreation Center</strong> — 831 Pumehana St, Honolulu, HI 96826</li>
+                <li><strong>Magic Island</strong> — Ala Moana Blvd Park, Honolulu, HI 96814<br/>21.286420, -157.845621</li>
+                <li><strong>Hau Tree / Kaimanas Beach</strong> — 2777 Kalākaua Ave, Honolulu, HI 96815<br/>21.263561, -157.821389</li>
+                <li><strong>San Souci</strong> — Public Art "Surfer on a Wave", Kalakaua Ave & Opp Monsarrat Ave, Honolulu, HI 96815<br/>21.270441, -157.822496</li>
+              </ul>
+            </div>
           </div>
-          <Card className={`rounded-3xl ${T.border}`}>
-            <CardContent className="p-6 space-y-4">
-              <h3 className="font-medium">What to bring</h3>
-              <ul className="list-disc pl-5 text-sm text-slate-600 space-y-1">
-                <li>Photo ID & matching credit card</li>
-                <li>Closed‑toe shoes recommended</li>
-                <li>Light jacket or sunscreen (trade winds!)</li>
-              </ul>
-              <h3 className="font-medium pt-2">Safety & security</h3>
-              <ul className="list-disc pl-5 text-sm text-slate-600 space-y-1">
-                <li>Helmets & U‑locks included</li>
-                <li>Please bring bikes inside at night</li>
-                <li>Return to the specified lock‑up pin</li>
-              </ul>
-              <div className="pt-2">
-                <Button asChild className={`rounded-2xl ${T.cta}`}>
+          <Card className={`rounded-3xl ${T.border} flex flex-col justify-between`}>
+            <CardContent className="p-6 flex flex-col h-full">
+              <div>
+                <h3 className="font-medium mb-3 flex items-center gap-2">
+                  <MapPin className={`h-5 w-5 ${T.brandIcon}`} /> Pickup/Drop-off Locations
+                </h3>
+                <ul className="space-y-2 text-sm text-slate-700 mb-6">
+                  <li className="flex items-start gap-2"><MapPin className="h-4 w-4 mt-0.5 text-sky-400" /> <span><strong>McCully Recreation Center</strong><br/>831 Pumehana St, Honolulu, HI 96826</span></li>
+                  <li className="flex items-start gap-2"><MapPin className="h-4 w-4 mt-0.5 text-sky-400" /> <span><strong>Magic Island</strong><br/>Ala Moana Blvd Park, Honolulu, HI 96814</span></li>
+                  <li className="flex items-start gap-2"><MapPin className="h-4 w-4 mt-0.5 text-sky-400" /> <span><strong>Hau Tree / Kaimanas Beach</strong><br/>2777 Kalākaua Ave, Honolulu, HI 96815</span></li>
+                  <li className="flex items-start gap-2"><MapPin className="h-4 w-4 mt-0.5 text-sky-400" /> <span><strong>San Souci</strong><br/>Kalakaua Ave & Opp Monsarrat Ave, Honolulu, HI 96815</span></li>
+                </ul>
+              </div>
+              <div className="pt-2 mt-auto">
+                <Button asChild className={`rounded-2xl ${T.cta} w-full`}>
                   <a href={BOOK_URL} target="_blank" rel="noreferrer">Book pickup time</a>
                 </Button>
               </div>
@@ -453,74 +443,6 @@ export default function OahuBikeLanding() {
         </div>
       </section>
 
-      {/* Partner Hotels */}
-      <section id="hotels" className="mx-auto max-w-6xl px-4 py-12 md:py-16">
-        <div className="mb-8">
-          <h2 className="text-2xl md:text-3xl font-semibold text-slate-900">Partner Hotels</h2>
-        </div>
-        <div className="grid md:grid-cols-3 gap-6">
-          {[
-            {
-              name: "Surfjack Hotel & Swim Club",
-              location: "Waikīkī",
-              description: "Retro-modern boutique hotel with vibrant local art and poolside vibes",
-              slug: "surfjack",
-              featured: true
-            },
-            {
-              name: "White Sands Hotel",
-              location: "Waikīkī Beach", 
-              description: "Stylish beachfront hotel with tropical modern design",
-              slug: "whitesands",
-              featured: true
-            },
-            {
-              name: "The Monarch Hotel",
-              location: "Waikīkī",
-              description: "Contemporary hotel with rooftop bar and city views",
-              slug: "monarch",
-              featured: false
-            }
-          ].map((hotel, i) => (
-            <Card key={i} className={`rounded-3xl ${T.border}`}>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Hotel className={T.brandIcon} /> 
-                  <div>
-                    <div className="text-base">{hotel.name}</div>
-                    <div className="text-xs text-slate-500 font-normal">{hotel.location}</div>
-                  </div>
-                  {hotel.featured && (
-                    <span className={`ml-auto text-xs px-2 py-1 rounded-full bg-${T.brandIcon.replace('text-', 'bg-')}/10 text-${T.brandIcon.replace('text-', 'text-')}`}>
-                      Popular
-                    </span>
-                  )}
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-3">
-                <p className="text-sm text-slate-600">{hotel.description}</p>
-                <div className="flex gap-2">
-                  <Button asChild className={`w-full ${T.cta} rounded-2xl text-sm`}>
-                    <a href={`/hotels/${hotel.slug}`}>View Hotel Page & Book</a>
-                  </Button>
-                </div>
-                <div className="text-xs text-slate-500">
-                  ✓ On-site bike pickup ✓ Contactless unlock ✓ Integrated booking
-                </div>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-        <div className="mt-8 p-6 rounded-2xl bg-slate-50 border border-slate-100">
-          <h3 className="font-medium text-slate-900 mb-2">Hotel-Specific Experience</h3>
-          <p className="text-sm text-slate-600 mb-3">
-            Each partner hotel has its own dedicated booking page with custom branding, specific pickup instructions, and local recommendations.
-          </p>
-          <div className="text-sm text-slate-600">
-            Are you a hotel? <a className={`${T.brand} underline`} href="#partner-info">Learn about revenue share</a>.
-          </div>
-        </div>
-      </section>
 
       {/* Partner info (for hotels) */}
       <section id="partner-info" className="mx-auto max-w-6xl px-4 py-12 md:py-16">
@@ -539,9 +461,6 @@ export default function OahuBikeLanding() {
           <div className="mt-5 flex gap-3">
             <Button asChild className={`${T.cta} rounded-2xl`}>
               <a href={`mailto:${CONTACT_EMAIL}?subject=Oahu.BIKE%20Hotel%20Partnership`}>Request partnership deck</a>
-            </Button>
-            <Button asChild variant="outline" className={`rounded-2xl ${T.ctaOutline}`}>
-              <a href="#hotels">See guest experience</a>
             </Button>
           </div>
         </div>
