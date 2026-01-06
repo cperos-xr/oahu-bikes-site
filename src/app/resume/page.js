@@ -47,7 +47,7 @@ const projects = [
       { text: 'TIME', url: 'https://time.com/7094558/exex-experiencex/' }
     ],
     image: '/resume/images/experiencex.png',
-    highlight: 'TIME Best Invention 2024'
+    highlight: 'A TIME Magazine Best Invention 2024'
   },
   {
     title: 'Puttscape',

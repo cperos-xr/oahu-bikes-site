@@ -98,6 +98,10 @@
   display: block;
 }
 
+.thumb img[src*='experiencex.png'] {
+  object-position: center 80%;
+}
+
 .body {
   padding: var(--pad);
   display: flex;
