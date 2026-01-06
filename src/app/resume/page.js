@@ -77,7 +77,12 @@ const ResumePage = () => {
 
           <div className={styles.contact}>
             <div><b>Constantine Peros</b></div>
-            <div><a href="https://constantine-peros.webflow.io/" target="_blank" rel="noreferrer">Portfolio</a></div>
+            <div>
+                <a href="https://constantine-peros.webflow.io/" target="_blank" rel="noreferrer">Portfolio </a>|
+                <a href="https://github.com/cperos-xr/" target="_blank" rel="noreferrer"> GitHub </a>|
+                <a href="https://www.youtube.com/@CPerosXR" target="_blank" rel="noreferrer"> YouTube </a> |
+                <a href="https://www.linkedin.com/in/constantine-peros/" target="_blank" rel="noreferrer"> LinkedIn</a>
+            </div>
             <div><a href="mailto:CPeros.XR@gmail.com">CPeros.XR@gmail.com</a> · 949-422-9297</div>
           </div>
         </header>
@@ -108,18 +113,32 @@ const ResumePage = () => {
 
           {/* XR Engineering Focus Card */}
           <article className={`${styles.card} ${styles.focusCard}`}>
+            <div className={styles.thumb}>
+              <img src="/resume/images/cperos.png" alt="Constantine Peros working on a project" />
+            </div>
             <div className={styles.body}>
               <h2 className={styles.projTitle}>XR Engineering Focus</h2>
               <p className={styles.focusText}>
-                I design and ship production-ready Unity XR experiences across AR and VR, including branded activations, live events, mobile AR, and spatial computing for healthcare and enterprise use.
+                I design and ship production-ready Unity XR experiences across AR and VR, including branded activations, live events, mobile AR, and extended reality for entertainment, commercial, healthcare and enterprise use.
               </p>
               <p className={styles.focusText}>
                 My work focuses on interaction design, technical execution, and delivering experiences that function reliably in real-world deployment contexts.
               </p>
+              <div className={styles.qrRow}>
+                <div className={styles.qrText}>
+
+                  <div style={{ marginTop: '4px' }}>
+                  </div>
+                </div>
+                <div className={styles.qrBox}>
+                  <img src="/resume/images/qr-code.png" alt="QR code to about page" />
+                </div>
+              </div>
             </div>
           </article>
         </section>
 
+        {/* GitHub Link */}
         <footer className={styles.footer}>
           <div>All projects shown are shipped, production applications where Constantine Peros served as lead or core Unity engineer.</div>
         </footer>
