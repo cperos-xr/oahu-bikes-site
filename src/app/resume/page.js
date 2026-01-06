@@ -130,9 +130,9 @@ const ResumePage = () => {
                   <div style={{ marginTop: '4px' }}>
                   </div>
                 </div>
-                <div className={styles.qrBox}>
+                {/* <div className={styles.qrBox}>
                   <img src="/resume/images/qr-code.png" alt="QR code to about page" />
-                </div>
+                </div> */}
               </div>
             </div>
           </article>
