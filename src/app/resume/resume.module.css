@@ -212,6 +212,108 @@
   background: #fff;
 }
 
+/* Logo Wall */
+.logoSection {
+  margin-top: 48px;
+  margin-bottom: 48px;
+  padding-top: 32px;
+  border-top: 1px solid var(--border);
+}
+
+.logoTitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--muted);
+  text-align: center;
+  margin: 0 0 40px 0;
+  letter-spacing: 0.02em;
+}
+
+.logoWall {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 32px 18px;
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 18px;
+}
+
+.logoItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+}
+
+.logoItem a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+
+.logoItemWide {
+  grid-column: span 2;
+}
+
+.logoItem:hover {
+  opacity: 1;
+}
+
+.logoItem img {
+  max-height: 100%;
+  max-width: 140px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  filter: grayscale(100%);
+  transition: filter 0.2s ease;
+}
+
+.logoItemWide img {
+  max-width: 280px;
+}
+
+.logoItem:hover img {
+  filter: grayscale(0%);
+}
+
+@media (max-width: 820px) {
+  .logoWall {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px 16px;
+  }
+  
+  .logoItem {
+    height: 36px;
+  }
+  
+  .logoItem img {
+    max-width: 100px;
+  }
+
+  .logoItemWide {
+    grid-column: span 2;
+  }
+
+  .logoItemWide img {
+    max-width: 200px;
+  }
+
+  .logoSection {
+    margin-top: 32px;
+    margin-bottom: 32px;
+    padding-top: 24px;
+  }
+
+  .logoTitle {
+    margin-bottom: 32px;
+  }
+}
+
 .footer {
   margin-top: 20px;
   color: var(--muted2);

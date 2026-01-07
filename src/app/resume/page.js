@@ -44,7 +44,7 @@ const projects = [
     links: [
       { text: 'Project Page', url: 'https://constantine-peros.webflow.io/work/surgery' },
       { text: 'eXeX', url: 'https://exex.ai/' },
-      { text: 'TIME', url: 'https://time.com/7094558/exex-experiencex/' }
+      { text: 'TIME', url: 'https://time.com/collections/best-inventions-2024/7094558/exex-experiencex/' }
     ],
     image: '/resume/images/experiencex.png',
     highlight: 'A TIME Magazine Best Invention 2024'
@@ -60,6 +60,27 @@ const projects = [
     ],
     image: '/resume/images/puttscape.png'
   }
+];
+
+const logos = [
+  { src: '/resume/images/logos/google.png', alt: 'Google', url: 'https://www.google.com/' },
+  { src: '/resume/images/logos/meta.png', alt: 'Meta', url: 'https://www.meta.com/quest/' },
+  { src: '/resume/images/logos/appleVisonPro.png', alt: 'Apple Vision Pro', url: 'https://www.apple.com/apple-vision-pro/' },
+  { src: '/resume/images/logos/nba-removebg-preview.png', alt: 'NBA', url: 'https://www.nba.com/' },
+  { src: '/resume/images/logos/nhl.png', alt: 'NHL', url: 'https://www.nhl.com/' },
+  { src: '/resume/images/logos/celtics.png', alt: 'Boston Celtics', url: 'https://www.nba.com/celtics/' },
+  { src: '/resume/images/logos/Formula1-removebg-preview.png', alt: 'Formula 1', url: 'https://www.formula1.com/' },
+  { src: '/resume/images/logos/WilliamsRacing-removebg-preview.png', alt: 'Williams Racing', url: 'https://www.williamsf1.com/' },
+  { src: '/resume/images/logos/AB-removebg-preview.png', alt: 'Anheuser-Busch', url: 'https://www.anheuser-busch.com/' },
+  { src: '/resume/images/logos/bjork.png', alt: 'Björk', url: 'https://bjork.com/' },
+  { src: '/resume/images/logos/eXeX.png', alt: 'eXeX', url: 'https://exex.ai/' },
+  { src: '/resume/images/logos/Bioness_Logo-removebg-preview.png', alt: 'Bioness', url: 'https://bionessmedical.com/bitsfr/' },
+  { src: '/resume/images/logos/PulseJet-removebg-preview.png', alt: 'PulseJet', url: 'https://www.pulsejetstudios.com/' },
+  { src: '/resume/images/logos/modwell.png', alt: 'Modwell', url: 'https://www.modwell.io/about/' },
+  { src: '/resume/images/logos/Eventshop.png', alt: 'Eventshop', url: 'https://www.eventshop.com/' },
+  { src: '/resume/images/logos/ForeverLawn-Logo-removebg-preview.png', alt: 'ForeverLawn', url: 'https://www.foreverlawn.com/' },
+  { src: '/resume/images/logos/shoremaster-logo2-removebg-preview.png', alt: 'ShoreMaster', url: 'https://www.shoremaster.com/' },
+  { src: '/resume/images/logos/urway.png', alt: 'Urway', url: 'https://www.urway.ai/' },
 ];
 
 const ResumePage = () => {
@@ -136,6 +157,20 @@ const ResumePage = () => {
               </div>
             </div>
           </article>
+        </section>
+
+        {/* Logo Wall */}
+        <section className={styles.logoSection}>
+          <h2 className={styles.logoTitle}>Client List</h2>
+          <div className={styles.logoWall}>
+            {logos.map((logo, index) => (
+              <div key={index} className={styles.logoItem}>
+                <a href={logo.url} target="_blank" rel="noopener noreferrer">
+                  <img src={logo.src} alt={logo.alt} />
+                </a>
+              </div>
+            ))}
+          </div>
         </section>
 
         {/* GitHub Link */}
