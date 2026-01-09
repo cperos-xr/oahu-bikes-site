@@ -77,7 +77,7 @@ const logos = [
   { src: '/resume/images/logos/Bioness_Logo-removebg-preview.png', alt: 'Bioness', url: 'https://bionessmedical.com/bitsfr/' },
   { src: '/resume/images/logos/PulseJet-removebg-preview.png', alt: 'PulseJet', url: 'https://www.pulsejetstudios.com/' },
   { src: '/resume/images/logos/modwell.png', alt: 'Modwell', url: 'https://www.modwell.io/about/' },
-  { src: '/resume/images/logos/Eventshop.png', alt: 'Eventshop', url: 'https://www.eventshop.com/' },
+  { src: '/resume/images/logos/eventshop.png', alt: 'Eventshop', url: 'https://www.eventshop.com/' },
   { src: '/resume/images/logos/ForeverLawn-Logo-removebg-preview.png', alt: 'ForeverLawn', url: 'https://www.foreverlawn.com/' },
   { src: '/resume/images/logos/shoremaster-logo2-removebg-preview.png', alt: 'ShoreMaster', url: 'https://www.shoremaster.com/' },
   { src: '/resume/images/logos/urway.png', alt: 'Urway', url: 'https://www.urway.ai/' },
@@ -161,7 +161,7 @@ const ResumePage = () => {
 
         {/* Logo Wall */}
         <section className={styles.logoSection}>
-          <h2 className={styles.logoTitle}>Client List</h2>
+          <h2 className={styles.logoTitle}>Clients and Technologies</h2>
           <div className={styles.logoWall}>
             {logos.map((logo, index) => (
               <div key={index} className={styles.logoItem}>
