@@ -1,0 +1,896 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Oahu.BIKE — Hospitality Partnership One-Pager</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>
+  // Editable tweak defaults
+  const TWEAKS = /*EDITMODE-BEGIN*/{
+    "variant": "luxe",
+    "headline": "A",
+    "cta": "A",
+    "pilotCopy": "A",
+    "showStrategyNote": true
+  }/*EDITMODE-END*/;
+</script>
+<style>
+  :root{
+    /* Local-premium palette */
+    --paper:       #F4EEE4;
+    --paper-deep:  #E9DFCE;
+    --ink:         #0E1C2B;
+    --ink-soft:    #2B3B4C;
+    --rule:        #C9BDA6;
+    --accent:      #D8573A;
+    --accent-ink:  #7A2A15;
+    --sea:         #1E6B7A;
+    --sand:        #CDBFA4;
+  }
+  [data-variant="luxe"]{
+    --paper:       #EFE8DB;
+    --paper-deep:  #E3D9C5;
+    --ink:         #1A1916;
+    --ink-soft:    #3A362E;
+    --rule:        #B9A98A;
+    --accent:      #8C6A3F;
+    --accent-ink:  #4A3420;
+    --sea:         #567A75;
+    --sand:        #C8B895;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:#2a2925;}
+  body{
+    font-family: 'Geist', ui-sans-serif, system-ui, sans-serif;
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+    font-feature-settings: "ss01","cv11";
+    letter-spacing: -0.005em;
+  }
+
+  /* Page — US Letter proportions */
+  .stage{
+    padding: 56px 0 96px;
+    display:flex; flex-direction:column; align-items:center; gap: 48px;
+  }
+  .sheet{
+    width: 1240px;
+    min-height: 1605px;
+    background: var(--paper);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 40px 80px rgba(0,0,0,.35), 0 2px 0 rgba(0,0,0,.15);
+  }
+  .sheet::before{
+    content:""; position:absolute; inset:0; pointer-events:none; opacity:.35;
+    background-image:
+      radial-gradient(rgba(0,0,0,.05) 1px, transparent 1.2px),
+      radial-gradient(rgba(255,255,255,.35) 1px, transparent 1.2px);
+    background-size: 3px 3px, 5px 5px;
+    background-position: 0 0, 1px 2px;
+    mix-blend-mode: multiply;
+    z-index: 1;
+  }
+  /* Subtle Hawaiian island cue — faint horizon watermark top-right */
+  .sheet::after{
+    content:""; position:absolute; top: 42px; right: 72px; width: 130px; height: 130px;
+    pointer-events:none; z-index: 1; opacity:.18;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 130 130'><g fill='none' stroke='%231A1916' stroke-width='1' stroke-linecap='round'><circle cx='65' cy='65' r='62'/><path d='M8 78 Q 26 72 44 78 T 80 78 T 122 78'/><path d='M8 88 Q 26 82 44 88 T 80 88 T 122 88'/><path d='M8 98 Q 26 92 44 98 T 80 98 T 122 98'/><path d='M40 70 L 56 54 L 74 70 Z'/><path d='M66 70 L 82 48 L 98 70 Z'/></g></svg>");
+    background-size: contain; background-repeat:no-repeat;
+  }
+
+  /* masthead */
+  .mast{
+    padding: 44px 72px 0;
+    display:flex; justify-content:space-between; align-items:flex-start;
+    position:relative; z-index:2;
+  }
+  .brand{display:flex; align-items:center; gap:14px;}
+  .brand-mark{
+    width:44px; height:44px; border-radius:999px;
+    background: var(--ink); color:var(--paper);
+    display:grid; place-items:center;
+    font-family:'Instrument Serif', serif; font-size:26px; line-height:1;
+    letter-spacing:-.03em;
+  }
+  .brand-name{font-family:'Geist Mono',monospace; font-size:13px; letter-spacing:.16em; text-transform:uppercase;}
+  .brand-sub{font-family:'Geist Mono',monospace; font-size:10.5px; letter-spacing:.18em; text-transform:uppercase; color:var(--ink-soft); margin-top:3px;}
+  .meta{
+    text-align:right;
+    font-family:'Geist Mono', monospace; font-size:11px; letter-spacing:.16em; text-transform:uppercase;
+    color:var(--ink-soft);
+    line-height:1.7;
+  }
+  .meta b{color:var(--ink); font-weight:500;}
+
+  /* hero */
+  .hero{
+    padding: 36px 72px 40px;
+    display:grid; grid-template-columns: 1.35fr .9fr; gap: 56px;
+    align-items:end;
+    position:relative; z-index:2;
+  }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:10px;
+    font-family:'Geist Mono', monospace; font-size:11px; letter-spacing:.2em; text-transform:uppercase;
+    color: var(--accent-ink);
+    background: color-mix(in srgb, var(--accent) 16%, transparent);
+    padding: 6px 12px; border-radius:999px;
+    border:1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+  }
+  .eyebrow .dot{width:6px; height:6px; border-radius:999px; background:var(--accent);}
+  h1.headline{
+    font-family:'Instrument Serif', serif;
+    font-weight:400;
+    font-size: 96px;
+    line-height: .94;
+    letter-spacing: -0.025em;
+    margin: 20px 0 0;
+    color: var(--ink);
+  }
+  h1.headline em{font-style:italic; color:var(--accent);}
+  .sub{
+    margin-top: 26px;
+    font-size: 19px; line-height:1.45; color: var(--ink-soft);
+    max-width: 580px;
+  }
+  .hero-aside{
+    border-left: 1px solid var(--rule);
+    padding-left: 28px;
+    padding-bottom: 8px;
+  }
+  .ha-label{font-family:'Geist Mono',monospace; font-size:10px; letter-spacing:.2em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:10px;}
+  .ha-title{font-family:'Instrument Serif', serif; font-size:26px; line-height:1.12; margin:0 0 14px;}
+  .ha-body{font-size:14px; line-height:1.55; color:var(--ink-soft); margin: 0 0 18px;}
+  .ha-stats{
+    display:grid; grid-template-columns: 1fr 1fr; gap: 14px;
+    border-top:1px solid var(--rule); padding-top: 14px;
+  }
+  .ha-stat .n{font-family:'Instrument Serif', serif; font-size:30px; line-height:1; letter-spacing:-.02em;}
+  .ha-stat .n sup{font-size:14px; top:-.8em; margin-left:2px; color:var(--ink-soft);}
+  .ha-stat .l{font-family:'Geist Mono', monospace; font-size:9.5px; letter-spacing:.2em; text-transform:uppercase; color:var(--ink-soft); margin-top:4px;}
+
+  /* image strip */
+  .plate{
+    margin: 8px 72px 0;
+    height: 280px;
+    display:grid; grid-template-columns: 1.4fr 1fr .9fr; gap: 14px;
+    position:relative; z-index:2;
+  }
+  .ph{
+    position:relative; overflow:hidden; background:var(--paper-deep);
+    border:1px solid var(--rule);
+  }
+  .ph .stripes{position:absolute; inset:0;
+    background-image: repeating-linear-gradient(135deg,
+      color-mix(in srgb, var(--ink) 6%, transparent) 0 2px,
+      transparent 2px 18px);
+  }
+  .ph .cap{
+    position:absolute; left:14px; bottom:12px; right:14px;
+    font-family:'Geist Mono', monospace; font-size:10px; letter-spacing:.18em; text-transform:uppercase;
+    color: var(--ink-soft);
+    display:flex; justify-content:space-between;
+  }
+  .ph .num{
+    position:absolute; top:12px; left:14px;
+    font-family:'Geist Mono', monospace; font-size:10px; letter-spacing:.18em; color:var(--ink-soft);
+  }
+
+  /* section scaffolding */
+  section{position:relative; z-index:2;}
+  .rule{height:1px; background:var(--rule); margin: 40px 72px;}
+  .chapter{
+    display:grid; grid-template-columns: 160px 1fr; gap: 28px;
+    padding: 0 72px;
+    align-items: start;
+  }
+  .chapter + .chapter{margin-top: 44px;}
+  .chap-num{
+    font-family:'Geist Mono', monospace;
+    font-size:11px; letter-spacing:.22em; text-transform:uppercase;
+    border-top: 1px solid var(--ink);
+    padding-top: 10px;
+    color: var(--ink);
+  }
+  .chap-num span{color:var(--ink-soft); display:block; margin-top:6px; font-size:10px; line-height:1.5;}
+  .chap-h{
+    font-family:'Instrument Serif', serif;
+    font-size: 42px; line-height:1.02; letter-spacing:-.02em;
+    margin:0 0 14px; color:var(--ink);
+  }
+  .chap-h em{font-style:italic; color:var(--sea);}
+  [data-variant="luxe"] .chap-h em{color:var(--accent);}
+  .chap-lede{font-size:16px; line-height:1.55; color:var(--ink-soft); max-width: 780px; margin: 0;}
+
+  /* fits */
+  .fit-grid{
+    margin-top: 22px;
+    display:grid; grid-template-columns: repeat(3, 1fr); gap: 0;
+    border-top:1px solid var(--rule);
+  }
+  .fit{
+    padding: 18px 18px 22px 0;
+    border-bottom:1px solid var(--rule);
+    position:relative;
+  }
+  .fit + .fit{padding-left: 22px;}
+  .fit + .fit::before{
+    content:""; position:absolute; left:0; top:14px; bottom:14px; width:1px; background:var(--rule);
+  }
+  .fit .k{font-family:'Geist Mono', monospace; font-size:10px; letter-spacing:.2em; text-transform:uppercase; color:var(--accent-ink);}
+  .fit .t{font-family:'Instrument Serif', serif; font-size:22px; line-height:1.15; margin:10px 0 12px;}
+  .fit .d{font-size:13.5px; line-height:1.55; color:var(--ink-soft); margin:0;}
+
+  /* host/we split */
+  .split{
+    margin-top: 22px;
+    display:grid; grid-template-columns: 1fr 1fr;
+    border:1px solid var(--ink);
+    background: var(--paper);
+  }
+  .col{padding: 26px 28px 28px;}
+  .col + .col{border-left:1px solid var(--ink);}
+  .col.us{ background: var(--ink); color: var(--paper); }
+  .col.us .col-k{color: color-mix(in srgb, var(--paper) 75%, transparent);}
+  .col.us li{color: var(--paper);}
+  .col.us li::before{background:var(--accent);}
+  .col-k{font-family:'Geist Mono', monospace; font-size:10px; letter-spacing:.22em; text-transform:uppercase; color:var(--ink-soft);}
+  .col-h{font-family:'Instrument Serif', serif; font-size:32px; line-height:1; margin:6px 0 16px; letter-spacing:-.015em;}
+  .col ul{list-style:none; margin:0; padding:0;}
+  .col li{
+    font-size:14.5px; line-height:1.45;
+    padding: 11px 0 11px 22px; position:relative;
+    border-top:1px solid color-mix(in srgb, currentColor 18%, transparent);
+  }
+  .col li:first-child{border-top:0;}
+  .col li::before{
+    content:""; position:absolute; left:0; top:19px; width:10px; height:1px; background:var(--ink);
+  }
+  .col li b{font-weight:600;}
+
+  /* rack callout */
+  .rack-callout{
+    margin-top: 16px;
+    background: var(--paper-deep);
+    border:1px solid var(--rule);
+    padding: 18px 22px;
+    display:grid; grid-template-columns: 22px 1fr auto; gap: 18px; align-items:center;
+  }
+  .rack-callout .ic{
+    width: 22px; height: 22px;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231A1916' stroke-width='1.5' stroke-linecap='round'><path d='M3 18 L 21 18'/><path d='M6 18 L 6 8'/><path d='M18 18 L 18 8'/><ellipse cx='12' cy='6' rx='3' ry='5.5'/></svg>");
+    background-size: contain; background-repeat: no-repeat;
+  }
+  .rack-callout .txt{font-size: 14px; line-height:1.5; color:var(--ink);}
+  .rack-callout .txt b{font-family:'Instrument Serif', serif; font-weight:400; font-style:normal; font-size:18px; display:block; margin-bottom:2px; letter-spacing:-.01em;}
+  .rack-callout .tag{
+    font-family:'Geist Mono', monospace; font-size:10px; letter-spacing:.2em; text-transform:uppercase;
+    color:var(--accent-ink); white-space:nowrap;
+  }
+
+  /* guest value */
+  .cv{
+    margin-top: 22px;
+    display:grid; grid-template-columns: 1.1fr 1fr; gap: 40px; align-items:start;
+  }
+  .cv-quote{
+    font-family:'Instrument Serif', serif;
+    font-size: 36px; line-height:1.1; letter-spacing:-.015em;
+    color:var(--ink);
+    margin: 0;
+  }
+  .cv-quote em{font-style:italic; color:var(--sea);}
+  [data-variant="luxe"] .cv-quote em{color:var(--accent);}
+  .cv-attr{font-family:'Geist Mono', monospace; font-size:10px; letter-spacing:.2em; text-transform:uppercase; color:var(--ink-soft); margin-top:18px;}
+  .cv-list{display:grid; grid-template-columns: 1fr 1fr; gap: 18px 22px;}
+  .cv-item .k{font-family:'Geist Mono',monospace; font-size:10px; letter-spacing:.2em; text-transform:uppercase; color:var(--ink-soft);}
+  .cv-item .t{font-family:'Instrument Serif', serif; font-size:20px; line-height:1.15; margin:6px 0 8px;}
+  .cv-item .d{font-size:13px; line-height:1.5; color:var(--ink-soft); margin:0;}
+
+  /* payout / terms */
+  .opts{
+    margin-top: 22px;
+    display:grid; grid-template-columns: repeat(4, 1fr); gap: 12px;
+  }
+  .opt{
+    border:1px solid var(--rule); background: var(--paper);
+    padding: 20px 20px 22px; position:relative;
+    min-height: 220px;
+    display:flex; flex-direction:column;
+  }
+  .opt .tag{
+    font-family:'Geist Mono', monospace; font-size:10px; letter-spacing:.2em; text-transform:uppercase;
+    color:var(--ink-soft);
+  }
+  .opt .t{
+    font-family:'Instrument Serif', serif; font-size:24px; line-height:1.1;
+    margin: 10px 0 8px; letter-spacing:-.01em;
+  }
+  .opt .d{font-size:13px; line-height:1.5; color:var(--ink-soft); margin:0 0 14px;}
+  .opt .meta-row{
+    margin-top:auto; padding-top:12px; border-top:1px solid var(--rule);
+    font-family:'Geist Mono', monospace; font-size:10px; letter-spacing:.16em; text-transform:uppercase;
+    color:var(--ink-soft);
+    display:flex; justify-content:space-between; gap: 6px;
+  }
+  .opt .meta-row b{color:var(--ink); font-weight:500;}
+  .opt .index{
+    position:absolute; top:16px; right:18px;
+    font-family:'Geist Mono', monospace; font-size:10px; color:var(--ink-soft); letter-spacing:.15em;
+  }
+  .opt.featured{ background: var(--ink); color: var(--paper); border-color: var(--ink);}
+  .opt.featured .tag{color: color-mix(in srgb, var(--paper) 75%, transparent);}
+  .opt.featured .d{color: color-mix(in srgb, var(--paper) 82%, transparent);}
+  .opt.featured .index{color: color-mix(in srgb, var(--paper) 65%, transparent);}
+  .opt.featured .meta-row{border-top-color: color-mix(in srgb, var(--paper) 22%, transparent); color: color-mix(in srgb, var(--paper) 72%, transparent);}
+  .opt.featured .meta-row b{color: var(--paper);}
+
+  .terms-note{
+    margin-top: 14px;
+    font-family:'Geist Mono', monospace; font-size:10.5px; letter-spacing:.14em; text-transform:uppercase;
+    color: var(--ink-soft);
+  }
+
+  /* pilot band */
+  .pilot{
+    margin: 36px 72px 0;
+    background: var(--ink); color: var(--paper);
+    padding: 28px 32px;
+    display:grid; grid-template-columns: 1fr 1.35fr auto; gap: 32px; align-items:center;
+    position:relative; z-index:2;
+    border-left: 6px solid var(--accent);
+  }
+  .pilot .k{font-family:'Geist Mono', monospace; font-size:10px; letter-spacing:.22em; text-transform:uppercase; color: color-mix(in srgb, var(--paper) 70%, transparent);}
+  .pilot .h{font-family:'Instrument Serif', serif; font-size:38px; line-height:1.02; margin:4px 0 0; letter-spacing:-.015em;}
+  .pilot .b{font-size:14.5px; line-height:1.5; color: color-mix(in srgb, var(--paper) 86%, transparent); margin:0;}
+  .pilot .actions{display:flex; flex-direction:column; gap:10px; align-items:flex-end;}
+  .pilot .btn{
+    display:inline-flex; align-items:center; gap:10px;
+    background: var(--accent); color:#fff;
+    padding: 14px 20px; border-radius:2px;
+    font-family:'Geist Mono', monospace; font-size:12px; letter-spacing:.18em; text-transform:uppercase;
+    white-space:nowrap;
+    text-decoration:none;
+  }
+  .pilot .sub-cta{font-family:'Geist Mono', monospace; font-size:10px; letter-spacing:.16em; text-transform:uppercase; color: color-mix(in srgb, var(--paper) 65%, transparent);}
+  .pilot .sub-cta a{color: var(--paper); text-decoration:none; border-bottom:1px solid color-mix(in srgb, var(--paper) 40%, transparent);}
+
+  /* footer / cta */
+  .foot{
+    margin: 44px 72px 0;
+    padding-top: 22px;
+    border-top: 1px solid var(--ink);
+    display:grid; grid-template-columns: 1.1fr 1fr 1fr; gap: 28px;
+    position:relative; z-index:2;
+  }
+  .foot h4{
+    font-family:'Geist Mono', monospace; font-size:10px; letter-spacing:.22em; text-transform:uppercase;
+    color:var(--ink-soft); margin:0 0 10px; font-weight:500;
+  }
+  .foot p{margin:0; font-size:14px; line-height:1.5; color:var(--ink);}
+  .foot a{color:var(--ink); text-decoration:none; border-bottom:1px solid var(--ink);}
+  .footline{
+    margin: 36px 72px 44px;
+    padding-top: 16px;
+    border-top: 1px solid var(--rule);
+    display:flex; justify-content:space-between; align-items:center;
+    font-family:'Geist Mono', monospace; font-size:10px; letter-spacing:.2em; text-transform:uppercase;
+    color:var(--ink-soft);
+    position:relative; z-index:2;
+    gap: 24px;
+  }
+  .wink{font-family:'Instrument Serif', serif; font-style:italic; font-size:14px; letter-spacing:0; text-transform:none; color:var(--ink-soft); text-align:center; flex:1;}
+
+  /* STRATEGY NOTE */
+  .note{
+    width: 1240px;
+    background: #161616;
+    color: #E9E3D8;
+    padding: 56px 72px 64px;
+    box-shadow: 0 40px 80px rgba(0,0,0,.35);
+  }
+  .note h2{
+    font-family:'Instrument Serif', serif; font-size:56px; line-height:1; letter-spacing:-.02em; margin:0 0 6px;
+  }
+  .note .kk{font-family:'Geist Mono',monospace; font-size:11px; letter-spacing:.22em; text-transform:uppercase; color:#9a9287;}
+  .note .cols{display:grid; grid-template-columns: 1fr 1fr; gap: 48px; margin-top: 28px;}
+  .note .cols h3{font-family:'Instrument Serif', serif; font-size:30px; margin:0 0 6px; letter-spacing:-.01em;}
+  .note .cols .tag{font-family:'Geist Mono',monospace; font-size:10px; letter-spacing:.22em; text-transform:uppercase; color:#c19b6a;}
+  .note .cols p{font-size:14.5px; line-height:1.55; color:#c9c2b5; margin: 10px 0 14px;}
+  .note .cols ul{list-style:none; padding:0; margin:0;}
+  .note .cols li{font-size:13.5px; line-height:1.5; color:#c9c2b5; padding:8px 0 8px 18px; position:relative; border-top:1px solid #2a2925;}
+  .note .cols li:first-child{border-top:0;}
+  .note .cols li::before{content:""; position:absolute; left:0; top:16px; width:10px; height:1px; background:#c19b6a;}
+
+  /* Tweaks panel */
+  .tweaks{
+    position: fixed; right: 20px; bottom: 20px; width: 300px;
+    background: #fff; color:#0E1C2B;
+    border: 1px solid #0E1C2B; border-radius: 4px;
+    padding: 14px 16px 16px; font-family:'Geist', sans-serif; font-size:13px;
+    display:none; z-index: 9999;
+    box-shadow: 0 20px 50px rgba(0,0,0,.3);
+    max-height: 86vh; overflow:auto;
+  }
+  .tweaks.on{display:block;}
+  .tweaks h5{margin:0 0 10px; font-family:'Geist Mono',monospace; font-size:11px; letter-spacing:.22em; text-transform:uppercase;}
+  .tweaks .row{display:flex; gap:6px; margin-bottom:8px; flex-wrap:wrap;}
+  .tweaks button{
+    flex:1; padding:8px 10px; font:inherit; font-size:11.5px;
+    border:1px solid #0E1C2B; background:#fff; cursor:pointer; border-radius:2px;
+    text-align:left;
+  }
+  .tweaks button.on{background:#0E1C2B; color:#fff;}
+  .tweaks label{display:block; margin-top:12px; font-family:'Geist Mono',monospace; font-size:10px; letter-spacing:.18em; text-transform:uppercase; color:#2B3B4C;}
+  .tweaks .stack button{flex: 1 1 100%;}
+  .tweaks .hint{font-size:11px; color:#6a6a6a; margin-top:8px; line-height:1.4;}
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width: 1320px){
+    .stage{ padding: 20px 0 40px; gap: 20px; }
+    .sheet, .note{ width: min(96vw, 1240px); }
+  }
+  @media (max-width: 820px){
+    html,body{background:#1f1e1b;}
+    .stage{padding: 0; gap: 0;}
+    .sheet, .note{
+      width: 100%;
+      min-height: 0;
+      box-shadow: none;
+    }
+    .sheet::after{ width: 80px; height: 80px; top: 18px; right: 20px; }
+    .mast{padding: 20px 22px 0; flex-direction: column; gap: 12px; align-items:flex-start;}
+    .meta{text-align:left;}
+    .hero{
+      padding: 18px 22px 20px;
+      grid-template-columns: 1fr; gap: 22px;
+    }
+    h1.headline{font-size: 46px; line-height:.98;}
+    .sub{font-size:16px; margin-top:16px;}
+    .ha-title{font-size:22px;}
+    .hero-aside{border-left:0; padding-left:0; border-top:1px solid var(--rule); padding-top:18px;}
+    .plate{margin: 0 22px; height: 180px; grid-template-columns: 1fr 1fr; gap: 8px;}
+    .ph.tight{display:none;}
+    .rule{margin: 24px 22px;}
+    .chapter{padding: 0 22px; grid-template-columns: 1fr; gap: 10px;}
+    .chap-num{border-top:1px solid var(--ink); padding-top:8px;}
+    .chap-h{font-size: 28px;}
+    .chap-lede{font-size:15px;}
+    .fit-grid{grid-template-columns: 1fr;}
+    .fit{padding: 14px 0 18px !important;}
+    .fit + .fit{padding-left:0 !important;}
+    .fit + .fit::before{display:none;}
+    .split{grid-template-columns: 1fr;}
+    .col + .col{border-left:0; border-top:1px solid var(--ink);}
+    .cv{grid-template-columns: 1fr; gap: 24px;}
+    .cv-quote{font-size: 26px;}
+    .cv-list{grid-template-columns: 1fr;}
+    .opts{grid-template-columns: 1fr 1fr; gap: 8px;}
+    .opt{min-height: 0;}
+    .pilot{
+      margin: 24px 22px 0; padding: 22px;
+      grid-template-columns: 1fr; gap: 18px; align-items:flex-start;
+    }
+    .pilot .h{font-size: 26px;}
+    .pilot .actions{align-items:flex-start;}
+    .foot{margin: 24px 22px 0; grid-template-columns: 1fr; gap:16px;}
+    .footline{margin: 20px 22px 28px; flex-direction:column; gap:10px; text-align:center;}
+    .wink{font-size:13px;}
+    .note{padding: 28px 22px 36px;}
+    .note h2{font-size: 34px;}
+    .note .cols{grid-template-columns: 1fr; gap:24px; margin-top:18px;}
+    .note .cols h3{font-size: 22px;}
+    .tweaks{left: 12px; right: 12px; width: auto; bottom: 12px;}
+  }
+  @media (max-width: 480px){
+    .opts{grid-template-columns: 1fr;}
+    .rack-callout{grid-template-columns: 22px 1fr; gap: 14px;}
+    .rack-callout .tag{grid-column: 2; margin-top: 4px;}
+  }
+
+  /* print */
+  @media print{
+    @page { size: Letter; margin: 0.4in; }
+    html,body{background:#fff;}
+    .stage{padding:0; gap:0;}
+    .sheet{
+      width: 100%;
+      min-height: 0;
+      box-shadow:none;
+      page-break-after: always;
+    }
+    .sheet::after{opacity:.12;}
+    .note{
+      width: 100%;
+      box-shadow:none;
+      page-break-before: always;
+    }
+    .tweaks{display:none !important;}
+  }
+</style>
+</head>
+<body>
+
+<div class="stage">
+
+  <!-- ========== SHEET 1: the flyer ========== -->
+  <article class="sheet" data-variant="luxe" id="sheet" data-screen-label="01 Flyer">
+
+    <!-- masthead -->
+    <header class="mast">
+      <div class="brand">
+        <div class="brand-mark">O</div>
+        <div>
+          <div class="brand-name">Oahu.Bike</div>
+          <div class="brand-sub">Partnership Program · Honolulu, Hawai‘i</div>
+        </div>
+      </div>
+      <div class="meta">
+        <div><b>For</b> &nbsp;/&nbsp; Hotels · Resorts · Boutique Properties</div>
+        <div><b>Document</b> &nbsp;/&nbsp; Amenity Partnership Brief</div>
+        <div><b>Fleet</b> &nbsp;/&nbsp; Commercial-grade Hawai‘i-legal e-bikes</div>
+      </div>
+    </header>
+
+    <!-- hero -->
+    <section class="hero">
+      <div>
+        <span class="eyebrow"><span class="dot"></span>Amenity partnership · Oʻahu hospitality properties</span>
+        <h1 class="headline" id="headline">A premium guest amenity,<br/>fully operated <em>off-property.</em></h1>
+        <p class="sub" id="sub">A managed on-site e-bike program for hotels, resorts, and boutique properties on Oʻahu. Guests gain a convenient, modern way to explore the island. Your property gains an amenity and incremental revenue — without the fleet, the liability, or the staff burden.</p>
+      </div>
+      <aside class="hero-aside">
+        <div class="ha-label">At a glance</div>
+        <h3 class="ha-title">Your property hosts the amenity.<br/>We operate the program.<br/>Guests enjoy the ride.</h3>
+        <p class="ha-body">Commercial-grade, Hawaiʻi-legal e-bikes delivered, maintained, insured, and supported by our team — built to the reliability standard used in municipal bike-share programs.</p>
+      </aside>
+    </section>
+
+    <!-- editorial image strip -->
+    <div class="plate plate-single">
+      <div class="ph tall" style="background-image:url('images/shopfront.png'); background-size:cover; background-position:center;">
+        <span class="num" style="color:#f4eee4; background:rgba(0,0,0,.45); padding:3px 8px;">01 · Shopfront, Honolulu</span>
+      </div>
+    </div>
+
+    <div class="rule"></div>
+
+    <!-- 01 Why it fits -->
+    <section class="chapter">
+      <div class="chap-num">01 — Fit<span>A signature amenity for hospitality properties.</span></div>
+      <div>
+        <h2 class="chap-h">An amenity your guests <em>already want</em> —<br/>and a revenue line your property didn't have.</h2>
+        <p class="chap-lede">Today's visitor arrives wanting to explore locally without a rental car. An on-site e-bike program gives concierge and front desk an immediate, credible answer — and your property a new contributor to non-room revenue.</p>
+
+        <div class="fit-grid">
+          <div class="fit">
+            <div class="k">Guest experience</div>
+            <div class="t">A modern, lifestyle-forward amenity.</div>
+            <div class="d">On-brand for premium properties. Elevates the arrival and concierge conversation without feeling like a tourism add-on.</div>
+          </div>
+          <div class="fit">
+            <div class="k">Incremental revenue</div>
+            <div class="t">Underused space, now a line item.</div>
+            <div class="d">A small, refined footprint near the entrance or valet. Revenue share or host-fee structures negotiated per property.</div>
+          </div>
+          <div class="fit">
+            <div class="k">Zero operational lift</div>
+            <div class="t">Your staff is not running a bike program.</div>
+            <div class="d">Bookings, support, maintenance, and guest communication run through us. Concierge simply points the way.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="rule"></div>
+
+    <!-- 02 You host / We handle -->
+    <section class="chapter">
+      <div class="chap-num">02 — Split<span>You host. We handle every part of the business.</span></div>
+      <div class="chap-num">02 — Split<span>Clear responsibilities. Low staff burden.</span></div>
+      <div>
+        <h2 class="chap-h">A clean division of responsibilities,<br/>written to <em>protect the property.</em></h2>
+        <p class="chap-lede">Every operational task — maintenance, support, liability — sits on our side of the line. The property's role is limited to approved placement and guest-facing visibility.</p>
+
+        <div class="split">
+          <div class="col host">
+            <div class="col-k">01 · The property</div>
+            <h3 class="col-h">You provide.</h3>
+            <ul>
+              <li>Approved on-site placement near valet, entrance, or guest-services area.</li>
+              <li>A safe, appropriate location that suits the property's standards.</li>
+              <li>Optional concierge or front-desk awareness for guest referrals.</li>
+              <li>Guest-facing visibility as agreed in the partnership terms.</li>
+            </ul>
+          </div>
+          <div class="col us">
+            <div class="col-k">02 · Oahu.BIKE</div>
+            <h3 class="col-h">We operate.</h3>
+            <ul>
+              <li>Fleet, helmets, locks, signage, on-site install — owned and supplied by us.</li>
+              <li>Maintenance, repairs, battery swaps, daily rotations, cleaning.</li>
+              <li>Booking, payments, ID verification, rider comms, guest support.</li>
+              <li>Transport, logistics, registration, GPS tracking, recovery.</li>
+              <li>Insurance coordination — theft and damage on our books.</li>
+              <li>Contactless lockbox, or concierge-assisted handoff — your preference.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="rack-callout">
+          <div class="ic" aria-hidden="true"></div>
+          <div class="txt">
+            <b>A fleet built to the standard your guests expect.</b>
+            Commercial-grade e-bikes used in municipal bike-share programs — imported by us, fully compliant with Hawaiʻi e-bike law, serviced on a schedule that matches property standards.
+          </div>
+          <span class="tag">Hawaiʻi-legal · Commercial-grade</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="rule"></div>
+
+    <!-- 03 Guest value -->
+    <section class="chapter">
+      <div class="chap-num">03 — Guest<span>Why your guests will use it.</span></div>
+      <div>
+        <h2 class="chap-h">Guests remember the afternoon<br/>they didn't spend <em>in a rental car.</em></h2>
+        <p class="chap-lede">The e-bike amenity gives concierge a ready answer to the most common question — "what should we do today?" — and turns local exploration into one of the most memorable parts of the stay.</p>
+
+        <div class="cv">
+          <div class="cv-list" style="grid-column: 1 / -1;">
+            <div class="cv-item">
+              <div class="k">Convenience</div>
+              <div class="t">Step out. Ride. Return.</div>
+              <div class="d">No rideshare wait, no rental-car logistics, no parking. The amenity is on property; the range is the city.</div>
+            </div>
+            <div class="cv-item">
+              <div class="k">Local discovery</div>
+              <div class="t">Coastlines, neighborhoods, dinner.</div>
+              <div class="d">A guest morning turns into a full-day itinerary, at their own pace, under their own direction.</div>
+            </div>
+            <div class="cv-item">
+              <div class="k">Concierge-friendly</div>
+              <div class="t">An easy, credible recommendation.</div>
+              <div class="d">Front desk and concierge gain a modern answer to "what's around?" — without coordinating a third-party vendor.</div>
+            </div>
+            <div class="cv-item">
+              <div class="k">On-brand</div>
+              <div class="t">Lifestyle-forward, not kiosk-y.</div>
+              <div class="d">A refined, managed amenity that reads as property-quality. Signage and placement reviewed with you.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="rule"></div>
+
+    <!-- 04 Terms — simplified to ONE model -->
+    <section class="chapter">
+      <div class="chap-num">04 — Terms<span>Tailored per property. No rate card.</span></div>
+      <div>
+        <h2 class="chap-h">A partnership structure <em>sized</em><br/>to the property's profile.</h2>
+        <p class="chap-lede">We do not publish a rate card. Each partnership is shaped around property type, guest profile, placement, and traffic — then proposed to you in writing. Common structures include revenue share, fixed monthly host fee, and hybrid arrangements; a pilot launch is offered to most new partners.</p>
+
+        <div class="terms-card">
+          <div class="terms-grid">
+            <div class="terms-cell">
+              <div class="tk">Commercial options</div>
+              <div class="tv">Revenue share, host fee, or hybrid.</div>
+              <div class="td">Selected together based on placement, projected demand, and property priorities.</div>
+            </div>
+            <div class="terms-cell">
+              <div class="tk">Operational footprint</div>
+              <div class="tv">Small, refined, reviewed with you.</div>
+              <div class="td">Placement, signage, and guest-facing presentation aligned to property standards before install.</div>
+            </div>
+            <div class="terms-cell">
+              <div class="tk">Pilot launch</div>
+              <div class="tv">Limited initial period, clean exit.</div>
+              <div class="td">Evaluate guest demand and on-site fit before committing to a longer arrangement. Terms in the written proposal.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="terms-note">Proposals tailored per property · Written terms · No long-term commitment required at launch.</div>
+      </div>
+    </section>
+
+    <!-- Pilot band -->
+    <aside class="pilot">
+      <div>
+        <div class="k">05 — Pilot launch</div>
+        <h3 class="h">A measured first step,<br/>designed for hospitality.</h3>
+      </div>
+      <p class="b" id="pilotCopy">Selected hotel partners may begin with a limited launch period — evaluating guest demand, on-site fit, and concierge uptake before moving into a longer arrangement. Installation, operations, and guest support are fully handled by our team; the property's review is based on real data, not a projection.</p>
+      <div class="actions">
+        <a class="btn" id="ctaBtn" href="mailto:info@oahu.bike?subject=Hotel%20Partnership%20%E2%80%94%20Amenity%20discussion">
+          <span id="ctaLabel">Explore a pilot partnership</span><span>→</span>
+        </a>
+        <div class="sub-cta">or reply to <a href="mailto:info@oahu.bike">info@oahu.bike</a></div>
+      </div>
+    </aside>
+
+    <!-- Footer / CTA block -->
+    <div class="foot">
+      <div>
+        <h4>Next step</h4>
+        <p>A brief property walkthrough, a review of placement options, and a tailored written proposal within a week. No commitment until the launch date.</p>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <p>
+          <a href="mailto:info@oahu.bike">info@oahu.bike</a><br/>
+          <a href="https://www.oahu.bike" target="_blank" rel="noopener">oahu.bike</a>
+        </p>
+      </div>
+      <div>
+        <h4>Program scale</h4>
+        <p>Typical install is up to 6 commercial-grade e-bikes, scaled to property size and guest volume. Larger programs available for the right property.</p>
+      </div>
+      <div>
+        <h4>What ships with each bike</h4>
+        <p>Commercial-grade foldable e-bike · helmet · lock · optional contactless lockbox · signage reviewed with the property.</p>
+      </div>
+    </div>
+
+    <div class="footline">
+      <span>Oahu.BIKE · Hospitality Partnership Brief</span>
+      <span class="wink">Nothing bad can happen — it can only good happen.</span>
+      <span>Honolulu, HI</span>
+    </div>
+
+  </article>
+
+  <!-- ========== SHEET 2: Strategy note ========== -->
+  <section class="note" id="note" data-screen-label="02 Strategy Note">
+    <div class="kk">Internal note · Not for partner distribution</div>
+    <h2>Two versions, one message.</h2>
+    <div class="cols">
+      <div>
+        <div class="tag">Version A · Core hospitality</div>
+        <h3>The default hotel flyer.</h3>
+        <p>Editorial, measured, operationally reassuring. The copy treats the reader as a hospitality professional — no 101, no tourism language. Leads on guest experience and incremental revenue, with operational lift as the quiet argument throughout.</p>
+        <ul>
+          <li>Speaks to GMs, ownership groups, and guest-experience leads.</li>
+          <li>The property/operator split is designed to read as a partnership.</li>
+          <li>Terms stay non-specific on numbers by design — proposals sized per property.</li>
+          <li>Pairs well with a brief walkthrough and a written proposal.</li>
+        </ul>
+      </div>
+      <div>
+        <div class="tag">Version B · Boutique-luxury</div>
+        <h3>The upscale alternate.</h3>
+        <p>Same skeleton, quieter palette — bone, driftwood bronze, muted sea. Appropriate for boutique, resort, and ownership-group audiences where brand fit is the primary filter. The narrative shifts from "amenity + revenue" to "signature guest experience."</p>
+        <ul>
+          <li>Reads more as an amenity proposal than a commercial partnership.</li>
+          <li>Use when the decision-maker indexes on guest experience over margin.</li>
+          <li>Toggle from Tweaks — palette, headline, CTA, and pilot copy all swap.</li>
+          <li>Same PDF export, same one-page structure, same pilot mechanic.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- ========== Tweaks panel ========== -->
+<div class="tweaks" id="tweaks">
+  <h5>Tweaks</h5>
+
+  <label>Visual variant</label>
+  <div class="row">
+    <button data-variant="local">Core hospitality</button>
+    <button data-variant="luxe">Boutique-luxury</button>
+  </div>
+
+  <label>Headline + subhead pair</label>
+  <div class="row stack">
+    <button data-headline="A">A · Premium amenity, operated off-property</button>
+    <button data-headline="B">B · Managed guest mobility program</button>
+    <button data-headline="C">C · Enhance experience, without operating</button>
+    <button data-headline="D">D · Signature amenity from underused space</button>
+  </div>
+
+  <label>CTA button</label>
+  <div class="row stack">
+    <button data-cta="A">A · Explore a pilot partnership</button>
+    <button data-cta="B">B · Schedule a property walkthrough</button>
+    <button data-cta="C">C · Request a tailored proposal</button>
+  </div>
+
+  <label>Pilot micro-copy</label>
+  <div class="row stack">
+    <button data-pilot="A">A · Measured launch, real data</button>
+    <button data-pilot="B">B · Introductory period</button>
+    <button data-pilot="C">C · Low-friction fit test</button>
+  </div>
+
+  <label>Strategy note</label>
+  <div class="row">
+    <button data-note="on">Show</button>
+    <button data-note="off">Hide</button>
+  </div>
+
+  <p class="hint">Print for letter-size PDF. Flyer + strategy note paginate cleanly.</p>
+</div>
+
+<script>
+  const HEADLINES = {
+    A: {
+      h: 'A premium guest amenity,<br/>fully operated <em>off-property.</em>',
+      s: 'A managed on-site e-bike program for hotels, resorts, and boutique properties on Oʻahu. Guests gain a convenient, modern way to explore the island. Your property gains an amenity and incremental revenue — without the fleet, the liability, or the staff burden.'
+    },
+    B: {
+      h: 'A fully managed<br/>guest mobility program<br/>for <em>Oʻahu hotels.</em>',
+      s: 'Commercial-grade e-bikes, a refined on-property footprint, and a team that runs every part of the operation. A lifestyle-forward amenity that supports guest experience and contributes to non-room revenue.'
+    },
+    C: {
+      h: 'Enhance the guest<br/>experience — without<br/><em>operating a fleet.</em>',
+      s: 'An on-site e-bike amenity built to hospitality standards. We handle the program end-to-end: install, maintenance, booking, support, and insurance. Your team keeps doing what it does best.'
+    },
+    D: {
+      h: 'Turn underused space<br/>into a <em>signature</em><br/>guest amenity.',
+      s: 'A small, refined footprint near the entrance or valet becomes a modern mobility amenity. Managed by us, presented to property standards, with commercial terms sized to your property.'
+    }
+  };
+  const CTAS = {
+    A: 'Explore a pilot partnership',
+    B: 'Schedule a property walkthrough',
+    C: 'Request a tailored proposal'
+  };
+  const PILOTS = {
+    A: "Selected hotel partners may begin with a limited launch period — evaluating guest demand, on-site fit, and concierge uptake before moving into a longer arrangement. Installation, operations, and guest support are fully handled by our team; the property's review is based on real data, not a projection.",
+    B: "A measured introductory period, structured with the property. Our team installs, operates, and reports on usage and guest feedback. At the end of the pilot, leadership has the information needed to decide on a longer arrangement — or conclude without obligation.",
+    C: "A low-friction way to test fit. The program operates under written pilot terms, aligned to the property's standards. We remain flexible on commercial structure during the pilot so the partnership can be shaped around what actually works on the ground."
+  };
+
+  const state = Object.assign({variant:'luxe', headline:'A', cta:'A', pilotCopy:'A', showStrategyNote:true}, window.TWEAKS||{});
+
+  function applyState(){
+    document.getElementById('sheet').dataset.variant = state.variant;
+
+    const hd = HEADLINES[state.headline] || HEADLINES.B;
+    document.getElementById('headline').innerHTML = hd.h;
+    document.getElementById('sub').textContent = hd.s;
+
+    document.getElementById('ctaLabel').textContent = CTAS[state.cta] || CTAS.A;
+    document.getElementById('pilotCopy').textContent = PILOTS[state.pilotCopy] || PILOTS.A;
+
+    document.getElementById('note').style.display = state.showStrategyNote ? '' : 'none';
+
+    document.querySelectorAll('#tweaks [data-variant]').forEach(b => b.classList.toggle('on', b.dataset.variant === state.variant));
+    document.querySelectorAll('#tweaks [data-headline]').forEach(b => b.classList.toggle('on', b.dataset.headline === state.headline));
+    document.querySelectorAll('#tweaks [data-cta]').forEach(b => b.classList.toggle('on', b.dataset.cta === state.cta));
+    document.querySelectorAll('#tweaks [data-pilot]').forEach(b => b.classList.toggle('on', b.dataset.pilot === state.pilotCopy));
+    document.querySelectorAll('#tweaks [data-note]').forEach(b => b.classList.toggle('on', b.dataset.note === (state.showStrategyNote ? 'on' : 'off')));
+  }
+  applyState();
+
+  window.addEventListener('message', (e) => {
+    const d = e.data || {};
+    if (d.type === '__activate_edit_mode') document.getElementById('tweaks').classList.add('on');
+    if (d.type === '__deactivate_edit_mode') document.getElementById('tweaks').classList.remove('on');
+  });
+  window.parent.postMessage({type:'__edit_mode_available'}, '*');
+
+  function persist(patch){
+    Object.assign(state, patch);
+    window.parent.postMessage({type:'__edit_mode_set_keys', edits: patch}, '*');
+    applyState();
+  }
+
+  document.querySelectorAll('#tweaks [data-variant]').forEach(b => b.addEventListener('click', () => persist({variant: b.dataset.variant})));
+  document.querySelectorAll('#tweaks [data-headline]').forEach(b => b.addEventListener('click', () => persist({headline: b.dataset.headline})));
+  document.querySelectorAll('#tweaks [data-cta]').forEach(b => b.addEventListener('click', () => persist({cta: b.dataset.cta})));
+  document.querySelectorAll('#tweaks [data-pilot]').forEach(b => b.addEventListener('click', () => persist({pilotCopy: b.dataset.pilot})));
+  document.querySelectorAll('#tweaks [data-note]').forEach(b => b.addEventListener('click', () => persist({showStrategyNote: b.dataset.note === 'on'})));
+</script>
+
+</body>
+</html>
