@@ -5,10 +5,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { getBikeById } from "@/lib/bikes";
 
-const BOOK_URL = process.env.NEXT_PUBLIC_BOOK_URL || "https://book.oahu.bike";
-
-export default async function QRBookingPage({ params, searchParams }) {
-  const { id } = params;
+export default async function QRBookingPage({ params }) {
+  const { id } = await params;
   const bike = getBikeById(id);
 
   // If no such bike, fallback to home
@@ -22,13 +20,11 @@ export default async function QRBookingPage({ params, searchParams }) {
     redirect("/");
   }
 
-  // Build booking links with query params so backend/Peek can consume later
-  const makeLink = (rate) => {
-    const url = new URL(BOOK_URL);
-    url.searchParams.set("bikeId", bike.id);
-    url.searchParams.set("rate", rate);
-    if (bike.hotelSlug) url.searchParams.set("hotel", bike.hotelSlug);
-    return url.toString();
+  // Bikes stationed at a partner hotel preselect (and credit) that hotel.
+  const makeLink = (rental) => {
+    const qs = new URLSearchParams({ rental });
+    if (bike.hotelSlug) qs.set("partner", bike.hotelSlug);
+    return `/book?${qs}`;
   };
 
   return (
@@ -73,19 +69,19 @@ export default async function QRBookingPage({ params, searchParams }) {
 
             <div className="grid md:grid-cols-3 gap-3 pt-2">
               <Button asChild className="rounded-2xl bg-sky-600 hover:bg-sky-700">
-                <a href={makeLink("half-day")} target="_blank" rel="noreferrer" className="flex items-center gap-2">
+                <Link href={makeLink("half-day")} className="flex items-center gap-2">
                   <Calendar className="h-4 w-4" /> Half‑Day
-                </a>
+                </Link>
               </Button>
               <Button asChild className="rounded-2xl bg-sky-600 hover:bg-sky-700">
-                <a href={makeLink("full-day")} target="_blank" rel="noreferrer" className="flex items-center gap-2">
+                <Link href={makeLink("full-day")} className="flex items-center gap-2">
                   <Calendar className="h-4 w-4" /> Full‑Day
-                </a>
+                </Link>
               </Button>
               <Button asChild className="rounded-2xl bg-sky-600 hover:bg-sky-700">
-                <a href={makeLink("multi-day")} target="_blank" rel="noreferrer" className="flex items-center gap-2">
+                <Link href={makeLink("multi-day")} className="flex items-center gap-2">
                   <Calendar className="h-4 w-4" /> Multi‑Day
-                </a>
+                </Link>
               </Button>
             </div>
 

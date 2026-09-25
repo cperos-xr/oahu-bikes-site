@@ -95,9 +95,8 @@ export default function BikePage() {
       return;
     }
     
-    // Otherwise, book directly on this page (free pickup locations)
-    // In production, this would initiate the actual booking flow
-    alert(`Booking ${bike.name} for ${selectedRental.label} rental!\n\nNext: Payment & confirmation would go here.`);
+    // Otherwise, book at one of the free pickup spots
+    router.push(`/book?rental=${selectedRental.id}`);
   };
 
   // Loading state

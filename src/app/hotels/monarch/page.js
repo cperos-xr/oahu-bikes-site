@@ -18,6 +18,7 @@ import {
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import BookingWidget from "@/components/booking/BookingWidget";
 
 export default function MonarchPage() {
   const hotel = {
@@ -46,7 +47,6 @@ export default function MonarchPage() {
       storageInstructions: "Use the designated bike room on P1 level. Key card access required - ask front desk.",
       additionalNotes: "Rooftop views make this a perfect starting point for scenic rides."
     },
-    bookingUrl: "https://book.oahu.bike?hotel=monarch"
   };
 
   const colors = hotel.colors;
@@ -157,26 +157,12 @@ export default function MonarchPage() {
           </p>
         </div>
         
-        <Card className={`rounded-3xl ${colors.border} ${colors.cardBg} max-w-4xl mx-auto shadow-xl`}>
-          <CardContent className="p-8 md:p-12">
-            <div className="text-center">
-              <h3 className={`text-2xl font-bold mb-6 ${colors.textPrimary}`}>E-Bike Booking Form</h3>
-              <div className="bg-slate-50 rounded-2xl p-8 border border-slate-200">
-                <p className={`${colors.accent} mb-4`}>
-                  🚧 Booking system integration coming soon with Peek Pro!
-                </p>
-                <p className={`text-sm ${colors.textSecondary} mb-6`}>
-                  In the meantime, you can book directly through our booking partner:
-                </p>
-                <Button asChild size="lg" className={`${colors.button} text-white rounded-2xl`}>
-                  <a href={hotel.bookingUrl} target="_blank" rel="noreferrer">
-                    BOOK NOW
-                  </a>
-                </Button>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
+        <div className="max-w-3xl mx-auto">
+          <BookingWidget
+            partner="monarch"
+            theme={{ cta: "bg-slate-900 hover:bg-black text-white", selected: "border-amber-700 bg-amber-50 ring-2 ring-amber-200", accent: "text-amber-700" }}
+          />
+        </div>
       </section>
 
       {/* Pickup Instructions */}

@@ -21,6 +21,7 @@ import {
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import BookingWidget from "@/components/booking/BookingWidget";
 
 // Hotel configurations with unique branding
 const HOTEL_CONFIGS = {
@@ -47,7 +48,6 @@ const HOTEL_CONFIGS = {
       storageInstructions: "Bikes must be stored in your room overnight. Use the service elevator for easy room access.",
       additionalNotes: "Check in with front desk if you need assistance locating the bike rack."
     },
-    bookingUrl: "https://book.oahu.bike?hotel=surfjack"
   },
   whitesands: {
     name: "White Sands Hotel",
@@ -72,7 +72,6 @@ const HOTEL_CONFIGS = {
       storageInstructions: "Secure bikes on your lanai or bring into your room. Always use the provided U-lock.",
       additionalNotes: "Perfect beachfront location for easy access to Waikiki Beach paths."
     },
-    bookingUrl: "https://book.oahu.bike?hotel=whitesands"
   },
   monarch: {
     name: "The Monarch Hotel",
@@ -97,7 +96,6 @@ const HOTEL_CONFIGS = {
       storageInstructions: "Use the designated bike room on P1 level. Key card access required - ask front desk.",
       additionalNotes: "Rooftop views make this a perfect starting point for scenic rides."
     },
-    bookingUrl: "https://book.oahu.bike?hotel=monarch"
   }
 };
 
@@ -231,26 +229,12 @@ export default function HotelPage() {
           </p>
         </div>
         
-        <Card className={`rounded-3xl ${colors.border} max-w-4xl mx-auto bg-gradient-to-r ${colors.primary} bg-opacity-5`}>
-          <CardContent className="p-8 md:p-12">
-            <div className="text-center">
-              <h3 className="text-2xl font-bold mb-6">E-Bike Booking Form</h3>
-              <div className="bg-white rounded-2xl p-8 border border-slate-200">
-                <p className={`${colors.accent} mb-4`}>
-                  🚧 Booking system integration coming soon with Peek Pro!
-                </p>
-                <p className="text-sm text-slate-600 mb-6">
-                  In the meantime, you can book directly through our booking partner:
-                </p>
-                <Button asChild size="lg" className={`${colors.button} rounded-2xl`}>
-                  <a href={hotel.bookingUrl} target="_blank" rel="noreferrer">
-                    BOOK NOW
-                  </a>
-                </Button>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
+        <div className="max-w-3xl mx-auto">
+          <BookingWidget
+            partner={hotelSlug}
+            theme={{ cta: `${colors.button} text-white` }}
+          />
+        </div>
       </section>
 
       {/* Pickup Instructions */}

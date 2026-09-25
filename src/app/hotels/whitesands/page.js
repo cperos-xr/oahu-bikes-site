@@ -18,6 +18,7 @@ import {
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import BookingWidget from "@/components/booking/BookingWidget";
 
 export default function WhiteSandsPage() {
   const hotel = {
@@ -43,7 +44,6 @@ export default function WhiteSandsPage() {
       storageInstructions: "Secure bikes on your lanai or bring into your room. Always use the provided U-lock.",
       additionalNotes: "Perfect beachfront location for easy access to Waikiki Beach paths."
     },
-    bookingUrl: "https://book.oahu.bike?hotel=whitesands"
   };
 
   const colors = hotel.colors;
@@ -155,26 +155,12 @@ export default function WhiteSandsPage() {
           </p>
         </div>
         
-        <Card className={`rounded-3xl ${colors.border} max-w-4xl mx-auto bg-gradient-to-r ${colors.primary} bg-opacity-5`}>
-          <CardContent className="p-8 md:p-12">
-            <div className="text-center">
-              <h3 className="text-2xl font-bold mb-6">E-Bike Booking Form</h3>
-              <div className="bg-white rounded-2xl p-8 border border-orange-200">
-                <p className="text-orange-700 mb-4">
-                  🚧 Booking system integration coming soon with Peek Pro!
-                </p>
-                <p className="text-sm text-slate-600 mb-6">
-                  In the meantime, you can book directly through our booking partner:
-                </p>
-                <Button asChild size="lg" className={`${colors.button} rounded-2xl`}>
-                  <a href={hotel.bookingUrl} target="_blank" rel="noreferrer">
-                    BOOK NOW
-                  </a>
-                </Button>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
+        <div className="max-w-3xl mx-auto">
+          <BookingWidget
+            partner="whitesands"
+            theme={{ cta: "bg-orange-500 hover:bg-orange-600 text-white", selected: "border-orange-500 bg-orange-50 ring-2 ring-orange-200", accent: "text-orange-600" }}
+          />
+        </div>
       </section>
 
       {/* Pickup Instructions */}

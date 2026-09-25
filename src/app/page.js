@@ -3,6 +3,7 @@
 /* eslint react/no-unescaped-entities: 0 */
 
 import React from "react";
+import Link from "next/link";
 import {
   Bike,
   Calendar,
@@ -69,14 +70,14 @@ function GalleryComponent() {
  * - Hotel-first model (primary): partners store bikes on-site and earn a cut of bookings at their location
  * - Secondary model: designated pickup/return spots around Waikīkī
  * - Contactless unlock via KEY LOCKBOX (like Airbnb) — no QR unlocks
- * - No references to FareHarbor. Generic BOOK_URL env fits Peek Pro later
+ * - Booking runs on our own /book page (Stripe Checkout), see src/lib/booking
  *
  * THEME: quickly try alternate color schemes by changing `ACTIVE_THEME` below.
  * (We pre-declare all classes to satisfy Tailwind's purge/safelist.)
  */
 
 // Config (env vars if present, otherwise sensible defaults)
-const BOOK_URL = process.env.NEXT_PUBLIC_BOOK_URL || "https://book.peek.com/s/319bb68d-5272-40cc-b627-a3787f443677/4xvox"; // Peek Pro booking link
+const BOOK_URL = "/book";
 const CONTACT_EMAIL = process.env.NEXT_PUBLIC_CONTACT_EMAIL || "info@oahu.bike";
 
 // ---- Theme system ---------------------------------------------------------
@@ -118,39 +119,6 @@ const THEMES = {
 
 const T = THEMES[ACTIVE_THEME];
 
-function PeekButton() {
-  const [mounted, setMounted] = React.useState(false);
-
-  React.useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted) {
-    // Render a plain link for SSR; Peek will enhance it on the client
-    return (
-      <a
-        href={BOOK_URL}
-        className={`${T.cta} rounded-2xl flex items-center justify-center gap-2 py-4 px-8 text-white font-medium text-lg transition-all hover:shadow-lg`}
-      >
-        <Calendar className="h-6 w-6" />
-        Book Your Ride
-      </a>
-    );
-  }
-
-  return (
-    <a
-      href={BOOK_URL}
-      className={`${T.cta} rounded-2xl flex items-center justify-center gap-2 py-4 px-8 text-white font-medium text-lg transition-all hover:shadow-lg`}
-      data-embed="true"
-      data-button-text="Book Now"
-    >
-      <Calendar className="h-6 w-6" />
-      Book Your Ride
-    </a>
-  );
-}
-
 export default function OahuBikeLanding() {
   return (
     <main className={`min-h-screen bg-gradient-to-b ${T.bgGrad} text-slate-800`}>
@@ -171,14 +139,14 @@ export default function OahuBikeLanding() {
           <div className="hidden md:flex items-center gap-6 text-sm">
             <a href="#how" className={`hover:${T.brand.replace("text-", "text-")}`}>How it works</a>
             <a href="#rentals" className={`hover:${T.brand.replace("text-", "text-")}`}>Rentals</a>
-            <a href="#booking" className={`hover:${T.brand.replace("text-", "text-")}`}>Booking</a>
+            <Link href={BOOK_URL} className={`hover:${T.brand.replace("text-", "text-")}`}>Booking</Link>
             <a href="#pickup" className={`hover:${T.brand.replace("text-", "text-")}`}>Pickup</a>
             <a href="#gallery" className={`hover:${T.brand.replace("text-", "text-")}`}>Gallery</a>
             <a href="#faq" className={`hover:${T.brand.replace("text-", "text-")}`}>FAQ</a>
           </div>
           <div className="flex items-center gap-3">
             <Button asChild className={`${T.cta} rounded-2xl`}>
-              <a href={BOOK_URL} target="_blank" rel="noreferrer">Book now</a>
+              <Link href={BOOK_URL}>Book now</Link>
             </Button>
           </div>
         </div>
@@ -206,9 +174,9 @@ export default function OahuBikeLanding() {
             </p>
             <div className="mt-6 flex flex-wrap items-center gap-3">
               <Button asChild size="lg" className={`${T.cta} rounded-2xl`}>
-                <a href="#booking" className="flex items-center gap-2">
-                  <Calendar className="h-5 w-5" /> Go to booking
-                </a>
+                <Link href={BOOK_URL} className="flex items-center gap-2">
+                  <Calendar className="h-5 w-5" /> Book your ride
+                </Link>
               </Button>
             </div>
             <div className="mt-6 flex flex-wrap items-center gap-6 text-sm text-slate-600">
@@ -256,7 +224,7 @@ export default function OahuBikeLanding() {
                 <li>Morning or afternoon slots</li>
               </ul>
               <Button asChild className={`w-full ${T.cta} rounded-2xl`}>
-                <a href="#booking">Book Now</a>
+                <Link href={`${BOOK_URL}?rental=half-day`}>Book Now</Link>
               </Button>
             </CardContent>
           </Card>
@@ -272,7 +240,7 @@ export default function OahuBikeLanding() {
                 <li>24 hours from pickup — not 9–5</li>
               </ul>
               <Button asChild className={`w-full ${T.cta} rounded-2xl`}>
-                <a href="#booking">Book Now</a>
+                <Link href={`${BOOK_URL}?rental=full-day`}>Book Now</Link>
               </Button>
             </CardContent>
           </Card>
@@ -288,7 +256,7 @@ export default function OahuBikeLanding() {
                 <li>Flexible scheduling available</li>
               </ul>
               <Button asChild className={`w-full ${T.cta} rounded-2xl`}>
-                <a href="#booking">Book Now</a>
+                <Link href={`${BOOK_URL}?rental=multi-day`}>Book Now</Link>
               </Button>
             </CardContent>
           </Card>
@@ -312,15 +280,13 @@ export default function OahuBikeLanding() {
                 </ul>
               </div>
               <div className="flex-shrink-0 flex items-center justify-center w-full md:w-auto">
-                <a
+                <Link
                   href={BOOK_URL}
-                  target="_blank"
-                  rel="noreferrer"
                   className={`${T.cta} rounded-2xl flex items-center justify-center gap-2 py-4 px-8 text-white font-semibold text-lg transition-all hover:shadow-lg w-full md:w-auto`}
                 >
                   <Calendar className="h-6 w-6" />
                   Book Your Ride
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -384,7 +350,7 @@ export default function OahuBikeLanding() {
               </div>
               <div className="pt-2 mt-auto">
                 <Button asChild className={`rounded-2xl ${T.cta} w-full`}>
-                  <a href={BOOK_URL} target="_blank" rel="noreferrer">Book pickup time</a>
+                  <Link href={BOOK_URL}>Book pickup time</Link>
                 </Button>
               </div>
             </CardContent>
@@ -482,7 +448,7 @@ export default function OahuBikeLanding() {
           </div>
           <div className="text-sm">
             <div className="font-medium">Book</div>
-            <a className={`${T.brand} block hover:underline`} href={BOOK_URL} target="_blank" rel="noreferrer">Go to booking page</a>
+            <Link className={`${T.brand} block hover:underline`} href={BOOK_URL}>Go to booking page</Link>
           </div>
         </div>
         <div className="text-xs text-center text-slate-500 pb-6">© {new Date().getFullYear()} Oahu.BIKE. All rights reserved.</div>

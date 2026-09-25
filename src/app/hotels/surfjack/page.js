@@ -18,6 +18,7 @@ import {
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import BookingWidget from "@/components/booking/BookingWidget";
 
 export default function SurfjackPage() {
   const hotel = {
@@ -44,7 +45,6 @@ export default function SurfjackPage() {
       storageInstructions: "Bikes must be stored in your room overnight. Use the service elevator for easy room access. Feel free to wheel through the art-filled lobby!",
       additionalNotes: "Check in with our friendly front desk crew if you need assistance. They know all the best local artist spots to visit by bike."
     },
-    bookingUrl: "https://book.oahu.bike?hotel=surfjack"
   };
 
   const colors = hotel.colors;
@@ -169,31 +169,12 @@ export default function SurfjackPage() {
           </p>
         </div>
         
-        <Card className={`rounded-3xl ${colors.border} max-w-4xl mx-auto`} style={{
-          backgroundColor: 'rgba(254, 243, 199, 0.5)',
-          backgroundImage: 'url(/paper-fibers.png)',
-          backgroundRepeat: 'repeat',
-          backgroundSize: '400px 400px'
-        }}>
-          <CardContent className="p-8 md:p-12">
-            <div className="text-center">
-              <h3 className="text-2xl font-bold mb-6 text-amber-900">E-Bike Booking Form</h3>
-              <div className="bg-white/80 rounded-2xl p-8 border border-amber-200">
-                <p className="text-amber-800 mb-4">
-                  🚧 Booking system integration coming soon with Peek Pro!
-                </p>
-                <p className="text-sm text-amber-700 mb-6">
-                  In the meantime, you can book directly through our booking partner:
-                </p>
-                <Button asChild size="lg" className={`${colors.buttonSecondary} px-8 py-3 font-medium uppercase tracking-wide text-sm`} style={{backgroundColor: '#776f4a'}}>
-                  <a href={hotel.bookingUrl} target="_blank" rel="noreferrer">
-                    BOOK NOW
-                  </a>
-                </Button>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
+        <div className="max-w-3xl mx-auto">
+          <BookingWidget
+            partner="surfjack"
+            theme={{ cta: "text-white hover:opacity-90", ctaStyle: { backgroundColor: "#bf534d" }, selected: "border-amber-600 bg-amber-50 ring-2 ring-amber-200", accent: "text-amber-700" }}
+          />
+        </div>
       </section>
 
       {/* Pickup Instructions */}
